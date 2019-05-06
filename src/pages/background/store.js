@@ -12,9 +12,7 @@ const store = createStore(
 
 store.subscribe(throttle(() => {
   saveState({
-    bookmark: store.getState().bookmark,
-    settings: store.getState().settings,
-    animation: store.getState().animation
+    login: store.getState().login
   })
 }), 1000);
 

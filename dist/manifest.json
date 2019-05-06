@@ -29,7 +29,10 @@
         "storage",
         "alarms"
     ],
+    "externally_connectable": {
+        "matches": ["https://oauth.io/*"]
+    },
     "minimum_chrome_version": "60",
     "content_security_policy":
-        "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
+        "script-src 'self' https://cdn.rawgit.com/oauth-io/oauth-js/c5af4519/dist/oauth.js; object-src 'self'"
 }
