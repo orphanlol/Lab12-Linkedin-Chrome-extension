@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { connect} from 'react-redux';
-import OAuth from 'oauthio-web'
+import { connect } from 'react-redux';
 import {
     login
 } from '../background/actions'
@@ -24,7 +23,7 @@ class Login extends Component {
         if (!this.props.login)
         {
             isLogin = (
-                <button id='connect'>Connect</button>
+                <a href='https://linkedinextension.netlify.com/api/auth/login' target='_blank'>Login In</a>
             )
         }
             
@@ -46,7 +45,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        Login: () => dispatch(login())
     }
 }
 

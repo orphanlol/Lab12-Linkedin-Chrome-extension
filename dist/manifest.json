@@ -15,10 +15,8 @@
     },
     "content_scripts": [
         {
-        "matches": ["<all_urls>"],
-        "js": ["pages/index.js"],
-        "run_at": "document_end",
-        "exclude_matches": ["https://www.youtube.com/*"]
+        "matches": ["https://www.linkedin.com/in/*", "https://linkedinextension.netlify.com/*"],
+        "js": ["pages/index.js"]
         }
     ],
     "permissions": [
@@ -29,10 +27,14 @@
         "storage",
         "alarms"
     ],
-    "externally_connectable": {
-        "matches": ["https://oauth.io/*"]
-    },
+    "web_accessible_resources": [
+        "pages/popup.js",
+        "pages/popup.html",
+        "pages/background.html",
+        "pages/background.js",
+        "pages/index.js"
+    ],
     "minimum_chrome_version": "60",
     "content_security_policy":
-        "script-src 'self' https://cdn.rawgit.com/oauth-io/oauth-js/c5af4519/dist/oauth.js; object-src 'self'"
+        "script-src 'self' https://www.linkedin.com; object-src 'self'"
 }
