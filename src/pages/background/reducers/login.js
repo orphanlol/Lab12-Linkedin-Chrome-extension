@@ -1,12 +1,10 @@
 const initialState = {
-    isLogin: false,
     firstName: null,
     lastName: null,
     userId: null
-    
 }
 
-const login = (state = initialState, action ) => {
+const login = ( state = initialState, action ) => {
     switch(action.type) {
         case "GET_LOGIN_INFO": 
             return {

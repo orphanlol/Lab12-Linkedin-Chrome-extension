@@ -1,2 +1,0 @@
-export const LOGIN_START = 'LOGIN_START'
-export const GET_LOGIN_INFO = 'GET_LOGIN_INFO'

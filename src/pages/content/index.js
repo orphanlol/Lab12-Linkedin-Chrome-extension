@@ -4,8 +4,6 @@ import { render } from 'react-dom';
 import { Store } from 'webext-redux';
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux'
-import App from './App'
-
 
 const store = new Store({
     portName: 'COUNTING'
@@ -18,8 +16,6 @@ class ConnectedInjectApp extends Component {
     }
 
     sendBackend = () => {
-        console.log('i hate u')
-        console.log(this.props)
         const firstName = localStorage.getItem("first_name")
         const lastName = localStorage.getItem('last_name')
         const userId = localStorage.getItem('user_id')
