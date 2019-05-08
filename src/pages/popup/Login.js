@@ -15,6 +15,10 @@ class Login extends Component {
 
     render() {
 
+        localStorage.setItem('firstName', this.props.firstName)
+        localStorage.setItem('lastName', this.props.lastName)
+        localStorage.setItem('userId', this.props.userid)
+
 
         let isLogin = (
             <div>logout</div>
@@ -39,13 +43,16 @@ class Login extends Component {
 
 const mapStateToProps = state => {
     return {
-        login: state.login.isLogin
+        login: state.login.isLogin,
+        firstName: state.login.firstName,
+        lastName: state.login.lastName,
+        userid: state.login.userId
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        Login: () => dispatch(login())
+        
     }
 }
 

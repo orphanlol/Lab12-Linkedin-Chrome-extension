@@ -36396,11 +36396,15 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = __webpack_require__(529);
 
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 var _webextRedux = __webpack_require__(626);
 
 var _reactRedux = __webpack_require__(615);
 
-var _actions = __webpack_require__(654);
+var _App = __webpack_require__(683);
+
+var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36414,26 +36418,27 @@ var store = new _webextRedux.Store({
     portName: 'COUNTING'
 });
 
-var Inject = function (_Component) {
-    _inherits(Inject, _Component);
+var ConnectedInjectApp = function (_Component) {
+    _inherits(ConnectedInjectApp, _Component);
 
-    function Inject(props) {
-        _classCallCheck(this, Inject);
+    function ConnectedInjectApp(props) {
+        _classCallCheck(this, ConnectedInjectApp);
 
-        var _this = _possibleConstructorReturn(this, (Inject.__proto__ || Object.getPrototypeOf(Inject)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (ConnectedInjectApp.__proto__ || Object.getPrototypeOf(ConnectedInjectApp)).call(this, props));
 
         _this.sendBackend = function () {
             console.log('i hate u');
+            console.log(_this.props);
             var firstName = localStorage.getItem("first_name");
             var lastName = localStorage.getItem('last_name');
             var userId = localStorage.getItem('user_id');
-            _this.props.sendToBackground(firstName, lastName, userId);
+            store.dispatch({ type: "GET_LOGIN_INFO", firstname: firstName, lastname: lastName, userid: userId });
         };
 
         return _this;
     }
 
-    _createClass(Inject, [{
+    _createClass(ConnectedInjectApp, [{
         key: 'render',
         value: function render() {
 
@@ -36445,50 +36450,28 @@ var Inject = function (_Component) {
         }
     }]);
 
-    return Inject;
+    return ConnectedInjectApp;
 }(_react.Component);
 
 var mapStateToProps = function mapStateToProps(state) {
     return {};
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-
-    return {
-        sendToBackground: function sendToBackground(firstName, lastName, userId) {
-            return dispatch((0, _actions.loginInfo)(firstName, lastName, userId));
-        }
-    };
-};
-
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Inject);
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(ConnectedInjectApp);
 
 
-if (window.location.hostname === 'linkedinextension.netlify.com') {
+window.addEventListener('load', function () {
 
-    window.addEventListener('load', function () {
-        var injectDOM = document.createElement('iframe');
-        injectDOM.className = 'inject-react';
-        document.body.appendChild(injectDOM);
-        (0, _reactDom.render)(_react2.default.createElement(
-            _reactRedux.Provider,
-            { store: store },
-            _react2.default.createElement(Inject, null)
-        ), injectDOM);
-    });
-} else if (window.location.hostname === 'www.linkedin.com') {
-    console.log('i am here');
-    window.addEventListener('load', function () {
-        var injectDOM = document.createElement('iframe');
-        injectDOM.className = 'inject-react';
-        document.body.appendChild(injectDOM);
-        (0, _reactDom.render)(_react2.default.createElement(
-            _reactRedux.Provider,
-            { store: store },
-            _react2.default.createElement(Inject, null)
-        ), injectDOM);
-    });
-}
+    var injectDOM = document.createElement('div');
+    injectDOM.className = 'inject-react';
+    injectDOM.style.textAlign = 'center';
+    document.body.appendChild(injectDOM);
+    (0, _reactDom.render)(_react2.default.createElement(
+        _reactRedux.Provider,
+        { store: store },
+        _react2.default.createElement(ConnectedInjectApp, null)
+    ), injectDOM);
+});
 
 /***/ }),
 /* 653 */,
@@ -36498,11 +36481,6 @@ if (window.location.hostname === 'linkedinextension.netlify.com') {
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.loginInfo = exports.login = undefined;
-
 var _oauthioWeb = __webpack_require__(656);
 
 var _axios = __webpack_require__(664);
@@ -36510,29 +36488,6 @@ var _axios = __webpack_require__(664);
 var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var login = exports.login = function login() {
-    console.log('i get here');
-
-    _oauthioWeb.OAuth.initialize('Yq_ObrXeRonGLhBwvd3nXD2oFlA');
-    console.log('i get here how');
-
-    _oauthioWeb.OAuth.popup('linkedin2').done(function (result) {
-        console.log('linkedin', result);
-        _axios2.default.post('https://linkedinextension.herokuapp.com/api/users/user', {
-            result: result
-        });
-    }).fail(function (err) {
-        console.log(err);
-    });
-};
-
-var loginInfo = exports.loginInfo = function loginInfo(firstName, lastName, userID) {
-    console.log('i am here');
-    localStorage.setItem('firstName', firstName);
-    localStorage.setItem('lastName', lastName);
-    localStorage.setItem('userId', userID);
-};
 
 /***/ }),
 /* 655 */,
@@ -39397,6 +39352,25 @@ module.exports = function spread(callback) {
     return callback.apply(null, arr);
   };
 };
+
+/***/ }),
+/* 683 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _actions = __webpack_require__(654);
+
+var _react = __webpack_require__(454);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(615);
+
+var _webextRedux = __webpack_require__(626);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ })
 /******/ ]);

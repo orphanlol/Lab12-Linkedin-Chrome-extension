@@ -5,6 +5,9 @@ import thunk from 'redux-thunk'
 import reducer from './reducers'
 import throttle from 'lodash/throttle';
 import { saveState, loadState } from './localStorage';
+
+
+
 const store = createStore(
   reducer,
   loadState()

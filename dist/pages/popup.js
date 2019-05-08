@@ -39606,6 +39606,10 @@ var Login = function (_Component) {
         key: 'render',
         value: function render() {
 
+            localStorage.setItem('firstName', this.props.firstName);
+            localStorage.setItem('lastName', this.props.lastName);
+            localStorage.setItem('userId', this.props.userid);
+
             var isLogin = _react2.default.createElement(
                 'div',
                 null,
@@ -39633,16 +39637,15 @@ var Login = function (_Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
     return {
-        login: state.login.isLogin
+        login: state.login.isLogin,
+        firstName: state.login.firstName,
+        lastName: state.login.lastName,
+        userid: state.login.userId
     };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-    return {
-        Login: function Login() {
-            return dispatch((0, _actions.login)());
-        }
-    };
+    return {};
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Login);
@@ -39654,11 +39657,6 @@ exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.loginInfo = exports.login = undefined;
-
 var _oauthioWeb = __webpack_require__(656);
 
 var _axios = __webpack_require__(664);
@@ -39666,29 +39664,6 @@ var _axios = __webpack_require__(664);
 var _axios2 = _interopRequireDefault(_axios);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var login = exports.login = function login() {
-    console.log('i get here');
-
-    _oauthioWeb.OAuth.initialize('Yq_ObrXeRonGLhBwvd3nXD2oFlA');
-    console.log('i get here how');
-
-    _oauthioWeb.OAuth.popup('linkedin2').done(function (result) {
-        console.log('linkedin', result);
-        _axios2.default.post('https://linkedinextension.herokuapp.com/api/users/user', {
-            result: result
-        });
-    }).fail(function (err) {
-        console.log(err);
-    });
-};
-
-var loginInfo = exports.loginInfo = function loginInfo(firstName, lastName, userID) {
-    console.log('i am here');
-    localStorage.setItem('firstName', firstName);
-    localStorage.setItem('lastName', lastName);
-    localStorage.setItem('userId', userID);
-};
 
 /***/ }),
 /* 655 */,
