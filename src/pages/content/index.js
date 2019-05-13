@@ -1,80 +1,102 @@
 import React, { Component } from 'react'
-import { render} from 'react-dom';
+import { render } from 'react-dom';
 import { Store } from 'webext-redux';
 import { Provider } from 'react-redux';
-import { connect } from 'react-redux'
-import {loginInfo} from '../background/actions'
+import { connect } from 'react-redux';
+import {Route, Redirect, BrowserRouter as Router} from 'react-router-dom'
 
 const store = new Store({
     portName: 'COUNTING'
 })
 
-class Inject extends Component {
+
+class App extends Component {
     constructor(props) {
         super(props)
     }
 
+    componentDidUpdate() {
+        
+    }
+
     sendBackend = () => {
-        console.log('i hate u')
-        const firstName = localStorage.getItem("first_name")
-        const lastName = localStorage.getItem('last_name')
-        const userId = localStorage.getItem('user_id')
-        this.props.sendToBackground(firstName,lastName,userId)
+        const firstName = localStorage.getItem("firstName")
+        const lastName = localStorage.getItem('lastName')
+        const id = localStorage.getItem('id')
+        store.dispatch({type: "GET_LOGIN_INFO", firstname: firstName, lastname: lastName, id: id})
+        // return <Redirect to='/' />
+    }
+
+    injectIframe = () => {
+        const inject = document.querySelector('body')
+        const iframe = document.createElement('iframe');
+        iframe.className = 'iframe'
+        iframe.src = "chrome-extension://ahmiihehkjgljakabbilhepgnolajkkj/pages/iframe.html"
+        iframe.width = '452px'
+        iframe.style.zIndex = "2147483647";
+        iframe.style.top = "0px"
+        iframe.style.opacity = '1'
+        iframe.style.position = 'fixed'
+        iframe.style.height = '100%'
+        iframe.style.display = 'block'
+        iframe.style.right = '-4px'
+        iframe.style.backgroundColor = 'white'
+        inject.appendChild(iframe);
     }
 
     
     render() {
+        console.log(window.location.hostname)
+        console.log(window.location.hostname === 'linkedinextension.netlify.com')
+
+        let content = null;
+
+        if (window.location.hostname === 'linkedinextension.netlify.com') {
+            content = (
+                <div>
+                    {this.sendBackend()}
+                </div>
+            )
+        }
+        else if (window.location.hostname === 'www.linkedin.com') {
+            content = (
+                <div>
+                    hello
+                    {this.injectIframe()}
+                </div>
+            )
+        }
+        
 
         return (
-            
             <div>
-                {this.sendBackend()}
+                {content}
             </div>
         ) 
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
 
     }
 }
 
-const mapDispatchToProps = dispatch => {
+export default connect(mapStateToProps)(App)
 
-    return {
-        sendToBackground: (firstName, lastName, userId) => dispatch(loginInfo(firstName, lastName, userId))
-    }
-}
+window.addEventListener('load', () => {
 
-export default connect(mapStateToProps,mapDispatchToProps)(Inject)
+    const injectDOM = document.createElement('div');
+    injectDOM.className = 'inject-react';
+    injectDOM.style.textAlign = 'center';
+    document.body.appendChild(injectDOM);
+    render(
+    <Provider store={store}>
+        <Router>
+            <App />
+        </Router>
+    </Provider>
+    , injectDOM);
+});
 
-if (window.location.hostname === 'linkedinextension.netlify.com') {
-
-    window.addEventListener('load', () => {
-        const injectDOM = document.createElement('iframe');
-        injectDOM.className = 'inject-react';
-        document.body.appendChild(injectDOM);
-        render(
-            <Provider store={store}>
-                <Inject />
-            </Provider>
-            , injectDOM
-        )
-    })
-
-} else if (window.location.hostname === 'www.linkedin.com') {
-    console.log('i am here')
-    window.addEventListener('load', () => {
-        const injectDOM = document.createElement('iframe');
-        injectDOM.className = 'inject-react';
-        document.body.appendChild(injectDOM);
-        render(
-            <Provider store={store}>
-                <Inject />
-            </Provider>
-            , injectDOM
-        )
-    })
-}
 

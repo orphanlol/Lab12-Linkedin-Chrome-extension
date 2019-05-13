@@ -30,6 +30,10 @@ module.exports = {
       index: [
         'babel-polyfill',
         `${PAGES_PATH}/content`,
+      ],
+      iframe: [
+        'babel-polyfill',
+        `${PAGES_PATH}/iframe`,
       ]
     },
     output: {
@@ -75,7 +79,8 @@ module.exports = {
       ...generateHtmlPlugins(
         [
           'background',
-          'popup'
+          'popup',
+          'iframe'
         ]
       )
     ]

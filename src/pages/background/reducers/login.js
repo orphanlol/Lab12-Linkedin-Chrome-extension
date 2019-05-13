@@ -1,17 +1,17 @@
-import {
-    LOGIN_START
-} from '../actions'
-
 const initialState = {
-    isLogin: false
+    firstName: null,
+    lastName: null,
+    id: null
 }
 
-const login = (state = initialState, action ) => {
+const login = ( state = initialState, action ) => {
     switch(action.type) {
-        case LOGIN_START:
+        case "GET_LOGIN_INFO": 
             return {
                 ...state,
-                isLogin: false
+                firstName: action.firstname,
+                lastName: action.lastname,
+                id: action.id
             }
         default: return state
     }

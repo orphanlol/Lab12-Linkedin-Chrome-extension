@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import {
-    login
-} from '../background/actions'
 
 
 class Login extends Component {
@@ -10,20 +7,39 @@ class Login extends Component {
         super(props);
     }
 
-    
+    componentDidMount() {
+        localStorage.setItem('firstName', this.props.firstName)
+        localStorage.setItem('lastName', this.props.lastName)
+        localStorage.setItem('id', this.props.id)
+
+    }
+
+    logout = () => {
+        
+    }
     
 
     render() {
 
 
-        let isLogin = (
-            <div>logout</div>
-        )
 
-        if (!this.props.login)
+        let isLogin = null
+
+        if (this.props.Id === null)
         {
             isLogin = (
-                <a href='https://linkedinextension.netlify.com/api/auth/login' target='_blank'>Login In</a>
+                <a href='https://linkedinextension.netlify.com' target='_blank'>Login In</a>
+            )
+        } else {
+            isLogin = (
+                <div>
+                    <div>
+                        Welcome Back {this.props.firstName}
+                    </div>
+                    <div>
+                        <a href='https://linkedinextension.netlify.com' target='_blank'>Logout</a>
+                    </div>
+                </div>
             )
         }
             
@@ -34,18 +50,19 @@ class Login extends Component {
         )
     }
 
-
 }
 
 const mapStateToProps = state => {
     return {
-        login: state.login.isLogin
+        firstName: state.login.firstName,
+        lastName: state.login.lastName,
+        id: state.login.id
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        Login: () => dispatch(login())
+        
     }
 }
 

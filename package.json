@@ -20,7 +20,9 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "url-loader": "^0.5.9",
-    "webext-redux": "^2.0.2"
+    "webext-redux": "^2.0.2",
+    "webpack-combine-loaders": "^2.0.4",
+    "webpack-css-loaders": "^1.0.0"
   },
   "scripts": {
     "build": "webpack --watch --progress",

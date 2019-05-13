@@ -1,0 +1,33 @@
+.Body {
+    width: 300px;
+    height: 580px;
+    padding: 10px;
+}
+
+.Header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+
+
+.Save {
+    width: 50px;
+}
+
+.Title {
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.FormInput {
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.SubTitle {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10px;
+}
