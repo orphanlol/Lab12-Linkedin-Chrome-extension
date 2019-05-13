@@ -1,7 +1,7 @@
 const initialState = {
     firstName: null,
     lastName: null,
-    userId: null
+    id: null
 }
 
 const login = ( state = initialState, action ) => {
@@ -11,7 +11,7 @@ const login = ( state = initialState, action ) => {
                 ...state,
                 firstName: action.firstname,
                 lastName: action.lastname,
-                userId: action.userid
+                id: action.id
             }
         default: return state
     }

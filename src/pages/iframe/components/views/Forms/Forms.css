@@ -1,0 +1,25 @@
+.Forms {
+    width: 300px;
+    height: 580px;
+}
+
+.Title {
+    text-align: left;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Name {
+    width: 30%;
+}
+.Field {
+    width: 30%
+}
+
+.Empty {
+    width: 30%;
+}
+
+.Hello {
+    font-weight: bold
+}
