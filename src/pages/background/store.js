@@ -6,13 +6,18 @@ import reducer from './reducers'
 import throttle from 'lodash/throttle';
 import { saveState, loadState } from './localStorage';
 
-import {getForm, deleteForm, addForm} from './actions/formActions'
-
+import {getForm, deleteForm, addForm, getIndivForm, updateForm, addFormToUpdate} from './actions/formActions'
+import {getField, deleteField} from './actions/formFieldActions'
 
 const aliases = {
   'alias@GET_FORM': getForm,
   'alias@DELETE_FORM': deleteForm,
-  'alias@ADD_FORM': addForm
+  'alias@ADD_FORM': addForm,
+  'alias@GET_INDIV_FORM': getIndivForm,
+  'alias@UPDATE_FORM': updateForm,
+  'alias@GET_FIELD': getField,
+  'alias@DELETE_FIELD': deleteField,
+  'adias@ADD_FORM_TO_UPDATE': addFormToUpdate
 }
 
 const store = createStore(

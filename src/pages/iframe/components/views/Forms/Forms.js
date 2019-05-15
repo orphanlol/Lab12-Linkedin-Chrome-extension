@@ -18,8 +18,8 @@ class Forms extends Component {
     isUpdated: true
   }
 
-  async componentWillMount() {
-        await this.props.getForm(this.props.login.id)
+  componentWillMount() {
+        this.props.getForm(this.props.login.id)
         console.log('i am here')
         
   }
