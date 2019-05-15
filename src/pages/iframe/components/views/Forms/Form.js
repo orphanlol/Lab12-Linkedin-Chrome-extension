@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {Store} from 'react-chrome-redux';
+import {withRouter} from 'react-router'
 import "./Form.css";
 // import { deleteForm, addFormToUpdate } from "../../../actions/formActions.js";
 
@@ -14,6 +15,7 @@ class Form extends Component {
 
   deleteForm = (userId, formId) => {
     this.props.deleteForm(userId, formId);
+    this.props.history.push('/')
   };
 
   addFormToUpdate = form => {
@@ -52,8 +54,9 @@ class Form extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        deleteForm: (userId, formId) => store.dispatch({type: "alias@DELETE_FORM", userId: userId, formId:formId})
+        deleteForm: (userId, formId) => store.dispatch({type: "alias@DELETE_FORM", userId: userId, formId:formId}),
+        addFormToUpdate: (form) => store.dispatch({type: 'adias@ADD_FORM_TO_UPDATE', form: form})
     }
 }
 
-export default connect(null, mapDispatchToProps)(Form);
+export default withRouter(connect(null, mapDispatchToProps)(Form));

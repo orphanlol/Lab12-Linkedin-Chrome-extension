@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {withRouter} from 'react-router'
 import { connect } from "react-redux";
 import {Store} from 'react-chrome-redux';
 import './Forms.css'
@@ -8,21 +9,20 @@ import Form from './Form'
 
 const store = new Store({
     portName: 'COUNTING',
-  })
+})
 
 
 class Forms extends Component {
 
-    componentDidMount() {
-        this.props.getForm(this.props.login.id)
-    }
+  state = {
+    isUpdated: true
+  }
 
-    componentDidUpdate(prevProps) {
-      if(this.props.forms.forms.length !== prevProps.forms.forms.length) {
+  componentWillMount() {
         this.props.getForm(this.props.login.id)
-      }
-    }
-
+        console.log('i am here')
+        
+  }
 
     
     newForm = () => {
@@ -32,7 +32,7 @@ class Forms extends Component {
     render() {
         let form = <div>loading</div>;
 
-        if (this.props.forms.forms === null || this.props.forms.forms.length === 0) {
+        if (this.props.forms.forms === null || this.props.forms.forms.length === (0 || undefined)) {
           form = (
             <div className="Forms">
               <NavBar />
@@ -79,4 +79,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Forms)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Forms))

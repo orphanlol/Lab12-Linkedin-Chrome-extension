@@ -1,21 +1,30 @@
 import axios from 'axios';
 import * as actionsTypes from './actions'
 
+export const GET_FORM_START  ='GET_FORM_START'
+export const GET_FORM_FAILURE = 'GET_FORM_FAILURE'
+export const GET_FORM_SUCCESS = 'GET_FORM_SUCCESS'
 
 
-export const getForm = (id) => async dispatch => {
+
+export const getForm = (id) => dispatch => {
   console.log('id',id)
-  dispatch({ type: "GET_FORM_START" });
-  await axios
+  dispatch({ type: GET_FORM_START });
+  axios
     .get(
       `https://linkedinextension.herokuapp.com/api/forms/${id.id}`
     )
     .then(res => res.data)
     .then(forms => {
-      dispatch({ type: "GET_FORM_SUCCESS", payload: forms });
+      console.log('is id error')
+      dispatch({ type: GET_FORM_SUCCESS, payload: forms });
     })
-    .catch(err => dispatch({ type: "GET_FORM_FAILURE", ERROR: err }));
+    .catch(err => dispatch({ type: GET_FORM_FAILURE, ERROR: err }));
 };
+
+export const DELETE_FORM_START = "DELETE_FORM_START";
+export const DELETE_FORM_SUCCESS = "DELETE_FORM_SUCCESS";
+export const DELETE_FORM_FAILURE = "DELETE_FORM_FAILURE";
 
 
 export const deleteForm = (id) =>  {
@@ -23,19 +32,25 @@ export const deleteForm = (id) =>  {
     `https://linkedinextension.herokuapp.com/api/forms/${id.userId}/${id.formId}`
   );
   return dispatch => {
-    dispatch({ type: "DELETE_FORM_START" });
+    dispatch({ type: DELETE_FORM_START });
     deletedForm
       .then(forms => {
-        dispatch({ type: "DELETE_FORM_SUCCESS", payload: forms });
+        dispatch({ type: DELETE_FORM_SUCCESS, payload: forms });
       })
       .catch(err => {
-        dispatch({ type: "DELETE_FORM_FAILURE", payload: err });
+        dispatch({ type: DELETE_FORM_FAILURE, payload: err });
       });
   };
 };
 
-export const addForm = newForm => {
+export const ADD_FORM_START = "ADD_FORM_START";
+export const ADD_FORM_SUCCESS = "ADD_FORM_SUCCESS";
+export const ADD_FORM_FAILURE = "ADD_FORM_FAILURE";
+
+
+export const addForm = newForm => dispatch => {
   console.log(newForm, "begin new form");
+  dispatch({type: ADD_FORM_START})
   axios
     .post(
       `https://linkedinextension.herokuapp.com/api/forms/${localStorage.getItem(
@@ -45,15 +60,14 @@ export const addForm = newForm => {
         name: newForm.newForm.name
       }
     )
-    .then(async id => {
-      console.log(id, "id");
+    .then(id => {
+      dispatch({type: ADD_FORM_SUCCESS})
+      console.log(id, "i am here 1");
       for (let i = 0; i < newForm.newForm.fields.length; i++) {
-        await axios
+        axios
           .post(`https://linkedinextension.herokuapp.com/api/fields/field`, {
             form_id: id.data,
-            name: newForm.newForm.fields[i].name,
-            type: newForm.newForm.fields[i].selected,
-            selected: newForm.newForm.fields[i].selected
+            name: newForm.newForm.fields[i].name
           })
           .then(res => {
             console.log(res, "field res");
@@ -63,5 +77,66 @@ export const addForm = newForm => {
           });
       }
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      ({type: ADD_FORM_FAILURE})
+    });
+};
+
+export const GET_INDIVFORM_START = "GET_INDIVDEPT_START";
+export const GET_INDIVFORM_SUCCESS = "GET_INDIVDEPT_SUCCESS";
+export const GET_INDIVFORM_FAILURE = "GET_INDIVDEPT_FAILURE";
+
+export const getIndivForm = formId => dispatch => {
+  dispatch({ type: GET_INDIVFORM_START });
+  axios
+    .get(`https://linkedinextension.herokuapp.com/api/forms/${localStorage.getItem("id")}/${formId}`)
+    .then(res => res.data)
+    .then(form => {
+      dispatch({ type: GET_INDIVFORM_SUCCESS, payload: form });
+    })
+    .catch(err => {
+      dispatch({ type: GET_INDIVFORM_FAILURE, payload: err });
+    });
+};
+
+export const UPDATE_FORM_START = "UPDATE_FORM_START";
+export const UPDATE_FORM_SUCCESS = "UPDATE_FORM_SUCCESS";
+export const UPDATE_FORM_FAILURE = "UPDATE_FORM_FAILURE";
+
+export const updateForm = (newForm) => dispatch => {
+  console.log('newForm', newForm)
+  dispatch({ type: UPDATE_FORM_START });
+  axios
+    .put(
+      `https://linkedinextension.herokuapp.com/api/forms/${newForm.form.user_id}/${newForm.form.form_id}`,
+      newForm.form
+    )
+    .then(res => res.data)
+    .then(form => {
+      dispatch({ type: UPDATE_FORM_SUCCESS, payload: { ...form } });
+    })
+    .catch(err => {
+      dispatch({ type: UPDATE_FORM_FAILURE, payload: err });
+    });
+
+  for (let i = 0; i < newForm.field.length; i++) {
+    axios
+      .put(`https://linkedinextension.herokuapp.com/api/fields/field`, newForm.field[i])
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+};
+
+export const ADD_UPDATE_FORM_START = "ADD_UPDATE_FORM_START";
+export const ADD_UPDATE_FORM_SUCCESS = "ADD_UPDATE_FORM_SUCCESS";
+export const ADD_UPDATE_FORM_FAILURE = "ADD_UPDATE_FORM_FAILURE";
+
+export const addFormToUpdate = form => dispatch => {
+  console.log('form',form)
+  dispatch({ type: ADD_UPDATE_FORM_START });
+  dispatch({ type: ADD_UPDATE_FORM_SUCCESS, payload: form.form });
 };
