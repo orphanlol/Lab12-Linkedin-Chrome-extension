@@ -1,20 +1,25 @@
 import axios from 'axios';
 import * as actionsTypes from './actions'
 
+export const GET_FORM_START  ='GET_FORM_START'
+export const GET_FORM_FAILURE = 'GET_FORM_FAILURE'
+export const GET_FORM_SUCCESS = 'GET_FORM_SUCCESS'
 
 
-export const getForm = (id) => async dispatch => {
+
+export const getForm = (id) => dispatch => {
   console.log('id',id)
-  dispatch({ type: "GET_FORM_START" });
-  await axios
+  dispatch({ type: GET_FORM_START });
+  axios
     .get(
       `https://linkedinextension.herokuapp.com/api/forms/${id.id}`
     )
     .then(res => res.data)
     .then(forms => {
-      dispatch({ type: "GET_FORM_SUCCESS", payload: forms });
+      console.log('is id error')
+      dispatch({ type: GET_FORM_SUCCESS, payload: forms });
     })
-    .catch(err => dispatch({ type: "GET_FORM_FAILURE", ERROR: err }));
+    .catch(err => dispatch({ type: GET_FORM_FAILURE, ERROR: err }));
 };
 
 
@@ -23,13 +28,13 @@ export const deleteForm = (id) =>  {
     `https://linkedinextension.herokuapp.com/api/forms/${id.userId}/${id.formId}`
   );
   return dispatch => {
-    dispatch({ type: "DELETE_FORM_START" });
+    dispatch({ type: 'DELETE_FORM_START' });
     deletedForm
       .then(forms => {
-        dispatch({ type: "DELETE_FORM_SUCCESS", payload: forms });
+        dispatch({ type: 'DELETE_FORM_SUCCESS', payload: forms });
       })
       .catch(err => {
-        dispatch({ type: "DELETE_FORM_FAILURE", payload: err });
+        dispatch({ type: 'DELETE_FORM_FAILURE', payload: err });
       });
   };
 };
@@ -42,18 +47,17 @@ export const addForm = newForm => {
         "id"
       )}`,
       {
-        name: newForm.newForm.name
+        name: newForm.newForm.name,
+        type: newForm.type
       }
     )
-    .then(async id => {
-      console.log(id, "id");
+    .then(id => {
+      console.log(id, "i am here 1");
       for (let i = 0; i < newForm.newForm.fields.length; i++) {
-        await axios
+        axios
           .post(`https://linkedinextension.herokuapp.com/api/fields/field`, {
             form_id: id.data,
-            name: newForm.newForm.fields[i].name,
-            type: newForm.newForm.fields[i].selected,
-            selected: newForm.newForm.fields[i].selected
+            name: newForm.newForm.fields[i].name
           })
           .then(res => {
             console.log(res, "field res");

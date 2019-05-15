@@ -11,7 +11,8 @@ const store = new Store({
 class NewForm extends Component {
   state = {
     fields: [{ name: "", selected: "" }],
-    name: ""
+    name: "",
+    isUpdated: true
   };
 
   handleChange = e => {
@@ -43,10 +44,15 @@ class NewForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.props.addForm(this.state);
+    // this.props.history.push("/");
   };
 
   cancel = () => {
+    this.setState({
+      isUpdated: !this.state.isUpdated
+    })
     this.props.history.push("/");
+
   };
 
   render() {

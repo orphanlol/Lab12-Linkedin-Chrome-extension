@@ -1,6 +1,10 @@
-import * as actionsTypes from '../actions/actions';
+import {
+    GET_FORM_START,
+    GET_FORM_SUCCESS,
+    GET_FORM_FAILURE,
+  } from '../actions/formActions';
   
-const initialState = {
+  const initialState = {
     forms: null,
     isLoading: true,
     gettingForm: false,
@@ -8,24 +12,24 @@ const initialState = {
     isUpdating: false,
     formToUpdate: null,
     error: ""
-};
+  };
   
-export const formReducer = (state = initialState, action) => {
+  const formReducer = (state = initialState, action) => {
     switch (action.type) {
-      case "GET_FORM_START":
+      case GET_FORM_START:
         return {
           ...state,
           isLoading: true,
           error: ""
         };
-      case "GET_FORM_SUCCESS":
+      case GET_FORM_SUCCESS:
         return {
           ...state,
           forms: action.payload,
           isLoading: false,
           error: ""
         };
-      case "GET_FORM_FAILURE":
+      case GET_FORM_FAILURE:
         return {
           ...state,
           isLoading: false,
@@ -35,4 +39,6 @@ export const formReducer = (state = initialState, action) => {
       default:
         return state;
     }
-};
+  };
+  
+  export default formReducer;
