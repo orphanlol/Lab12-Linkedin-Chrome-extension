@@ -44,6 +44,14 @@ class App extends Component {
         inject.appendChild(iframe);
     }
 
+    getLinkiedElemet = () => {
+        const name = document.getElementsByClassName('pv-top-card-section__name')[0].innerText
+        const jobTitle = document.getElementsByClassName('pv-top-card-section__headline')[0].innerText
+        const location = document.getElementsByClassName('pv-top-card-section__location')[0].innerText
+        
+        store.dispatch({type: 'LINK_INFO', name: name, jobTitle: jobTitle, location: location})
+    }
+
     
     render() {
         console.log(window.location.hostname)
@@ -63,6 +71,7 @@ class App extends Component {
                 <div>
                     hello
                     {this.injectIframe()}
+                    {this.getLinkiedElemet()}
                 </div>
             )
         }
