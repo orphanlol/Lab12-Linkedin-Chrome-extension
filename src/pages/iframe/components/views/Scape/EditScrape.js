@@ -1,62 +1,56 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {Store} from 'webext-redux'
-
+import { Store } from "webext-redux";
 
 const store = new Store({
-    portName: 'COUNTING',
-})
+  portName: "COUNTING"
+});
 
 class EditScrape extends Component {
   state = {
-    fields: [],
+    fields: this.props.fieldsToUpdate,
     scrapedFields: []
   };
 
-  
   async componentDidMount() {
-      console.log('Mounting')
-    await this.setState({ fields: this.props.fieldsToUpdate });
-    this.state.fields.map((val, idx) => {
-      this.setState(prevState => ({
-        scrapedFields: [...prevState.scrapedFields, { text: "" }]
+    for (let i = 0; i < this.state.fields.length; i++) {
+      await this.setState(prevState => ({
+        scrapedFields: [...prevState.scrapedFields, { text: "", field: "" }]
       }));
-    });
-    
-    console.log(this.props.linkedinInfo,"inmount")
+    }
+
     this.state.fields.map((val, idx) => {
-        let name = this.state.fields[idx].name;
-        console.log(name,"name");
-        console.log(idx, "idx");
-        
-        if ((name = "Name")) {
-            let scrapedFields = [...this.state.scrapedFields];
-            scrapedFields[idx].text = this.props.linkedinInfo.name;
-            console.log("names", scrapedFields)
-            this.setState({ scrapedFields }, () =>
-            console.log(this.state.scrapedFields)
-            );
-        }
-        if ((name = "Job Title")) {
-            let scrapedFields = [...this.state.scrapedFields];
-            scrapedFields[idx].text = this.props.linkedinInfo.jobTitle;
-            console.log("jobS", scrapedFields)
+      let name = this.state.fields[idx].name;
 
-            this.setState({ scrapedFields }, () =>
-              console.log(this.state.scrapedFields)
-            );
-          }
-          if ((name = "Location")) {
-            let scrapedFields = [...this.state.scrapedFields];
-            scrapedFields[idx].text = this.props.linkedinInfo.location;
-            console.log("locationS", scrapedFields)
+      if (name == "Name") {
+        let scrapedFields = [...this.state.scrapedFields];
+        scrapedFields[idx].text = this.props.linkedinInfo.name;
+        scrapedFields[idx].field = name;
+        this.setState({ scrapedFields }, () =>
+          console.log(this.state.scrapedFields)
+        );
+      }
+      if (name == "Job Title") {
+        let scrapedFields = [...this.state.scrapedFields];
 
-            this.setState({ scrapedFields }, () =>
-              console.log(this.state.scrapedFields)
-            );
-          }
-      });
-    
+        scrapedFields[idx].text = this.props.linkedinInfo.jobTitle;
+        scrapedFields[idx].field = name;
+
+        this.setState({ scrapedFields }, () =>
+          console.log(this.state.scrapedFields)
+        );
+      }
+      if (name == "Location") {
+        let scrapedFields = [...this.state.scrapedFields];
+
+        scrapedFields[idx].text = this.props.linkedinInfo.location;
+        scrapedFields[idx].field = name;
+
+        this.setState({ scrapedFields }, () =>
+          console.log(this.state.scrapedFields)
+        );
+      }
+    });
   }
 
   handleChangeField = e => {
@@ -71,7 +65,7 @@ class EditScrape extends Component {
 
   render() {
     if (this.state.scrapedFields.length != this.state.fields.length) {
-      return <div>Loading</div>;
+      return <div> Loading</div>;
     } else {
       return (
         <div>
