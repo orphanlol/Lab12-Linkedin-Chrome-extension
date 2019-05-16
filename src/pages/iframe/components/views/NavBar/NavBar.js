@@ -8,14 +8,8 @@ const navBar = (props) => (
     <NavLink 
           activeClassName="active" 
           className="NavLink"
-          to="/forms" 
+          to="/" 
         >Forms</NavLink>
-  
-        <NavLink 
-          activeClassName="active" 
-          className="NavLink"
-          to="/dept" 
-        >Departments</NavLink>
 
         <NavLink 
           activeClassName="active"
