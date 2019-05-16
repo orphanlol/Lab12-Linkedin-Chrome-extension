@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Store } from "webext-redux";
+import jsPDF from "jspdf";
+import { renderToString } from "react-dom/server";
 
 const store = new Store({
   portName: "COUNTING"
@@ -61,7 +63,36 @@ class EditScrape extends Component {
     );
   };
 
-  export = e => {};
+  print = e => {
+    let lMargin = 15; //left margin in mm
+    let rMargin = 15; //right margin in mm
+    let pdfInMM = 210; // width of A4 in mm
+
+    var doc = new jsPDF();
+    doc.text("Resume:", 10, 10);
+
+    for (let i = 0; i < this.state.scrapedFields.length; i++) {
+      let yaxis = 30 + 15 * i;
+      let line = doc.splitTextToSize(
+        `${this.state.scrapedFields[i].field}: ${
+          this.state.scrapedFields[i].text
+        } `,
+        pdfInMM - lMargin - rMargin
+      );
+      doc.text(lMargin, yaxis, line);
+
+      // doc.text(
+      //   `${this.state.scrapedFields[i].field}: ${
+      //     this.state.scrapedFields[i].text
+      //   } `,
+      //   20,
+      //   yaxis
+      // );
+    }
+
+    doc.save(`Info.pdf`);
+    this.props.history.push("/forms");
+  };
 
   render() {
     if (this.state.scrapedFields.length != this.state.fields.length) {
@@ -99,7 +130,7 @@ class EditScrape extends Component {
               );
             })}
             <div>
-              <button onClick={e => this.export(e)}>Export</button>
+              <button onClick={e => this.print(e)}>Export</button>
             </div>
           </form>
         </div>
