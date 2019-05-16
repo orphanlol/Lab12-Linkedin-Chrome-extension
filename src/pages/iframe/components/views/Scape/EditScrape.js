@@ -26,14 +26,14 @@ class EditScrape extends Component {
     console.log(this.props.linkedinInfo,"inmount")
     this.state.fields.map((val, idx) => {
         let name = this.state.fields[idx].name;
-        console.log(name,"name");
-        console.log(idx, "idx");
+        // console.log(name,"name");
+        // console.log(idx, "idx");
         
         if ((name = "Name")) {
             let scrapedFields = [...this.state.scrapedFields];
             scrapedFields[idx].text = this.props.linkedinInfo.name;
-            console.log("names", scrapedFields)
-            this.setState({ scrapedFields }, () =>
+            console.log("names", scrapedFields[idx])
+            this.setState( scrapedFields[idx] , () =>
             console.log(this.state.scrapedFields)
             );
         }
