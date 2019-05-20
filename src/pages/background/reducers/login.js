@@ -1,3 +1,9 @@
+import {
+    LOGIN_INFO_START,
+    LOGIN_INFO_SUCCESS,
+    LOGIN_INFO_FAIL
+} from '../actions/actions'
+
 const initialState = {
     firstName: null,
     lastName: null,
@@ -6,12 +12,20 @@ const initialState = {
 
 const login = ( state = initialState, action ) => {
     switch(action.type) {
-        case "GET_LOGIN_INFO": 
+        case LOGIN_INFO_START: 
+            return {
+                ...state
+            }
+        case LOGIN_INFO_SUCCESS: 
             return {
                 ...state,
-                firstName: action.firstname,
-                lastName: action.lastname,
-                id: action.id
+                firstName: action.payload.firstName,
+                lastName: action.payload.lastName,
+                id: action.payload.id
+            }
+        case LOGIN_INFO_FAIL:
+            return {
+                ...state
             }
         default: return state
     }

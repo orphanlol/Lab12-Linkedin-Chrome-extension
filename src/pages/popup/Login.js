@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
-
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -15,17 +14,17 @@ class Login extends Component {
     }
 
     logout = () => {
-        
+        localStorage.clear()
     }
     
 
     render() {
 
 
-
+        console.log(this.props)
         let isLogin = null
 
-        if (this.props.Id === null)
+        if (this.props.id === null)
         {
             isLogin = (
                 <a href='https://linkedinextension.netlify.com' target='_blank'>Login In</a>

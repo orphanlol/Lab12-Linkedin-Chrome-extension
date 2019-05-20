@@ -52,6 +52,16 @@ class EditScrape extends Component {
           console.log(this.state.scrapedFields)
         );
       }
+      if (name == "Skills") {
+        let scrapedFields = [...this.state.scrapedFields];
+
+        scrapedFields[idx].text = this.props.linkedinInfo.skills;
+        scrapedFields[idx].field = name;
+
+        this.setState({ scrapedFields }, () =>
+          console.log(this.state.scrapedFields)
+        );
+      }
     });
   }
 
