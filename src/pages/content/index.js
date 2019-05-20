@@ -1,111 +1,249 @@
-import React, { Component } from 'react'
-import { render } from 'react-dom';
-import { Store } from 'webext-redux';
-import { Provider } from 'react-redux';
-import { connect } from 'react-redux';
-import {Route, Redirect, BrowserRouter as Router} from 'react-router-dom'
+import React, { Component } from "react";
+import { render } from "react-dom";
+import { Store } from "webext-redux";
+import { Provider, connect } from "react-redux";
+import {withRouter} from 'react-router'
+import { Route, Redirect, BrowserRouter as Router } from "react-router-dom";
+
 
 const store = new Store({
-    portName: 'COUNTING'
-})
-
+  portName: "COUNTING"
+});
 
 class App extends Component {
-    constructor(props) {
-        super(props)
+    
+    state = {
+      iframeOpen: false
     }
 
-    componentDidUpdate() {
+    injectOpen = () => {
+      const injects = document.getElementsByClassName('pv-top-card-v2-section__actions')
+      console.log(injects)
+      const button = document.createElement('button')
+      button.className = 'openIframe'
+      button.innerText = 'Open The extension'
+      button.style.transitionTimingFunction = 'cubic-bezier(.4, 0, .2, 1)'
+      button.style.transitionDuration = '167ms'
+      button.style.alignItems = 'center'
+      button.style.border = 'none'
+      button.style.borderRadius = '2px'
+      button.style.boxSizing = 'border-box'
+      button.style.cursor = 'pointer'
+      button.style.fontFamily = 'inherit'
+      button.style.fontWeight = '600'
+      button.style.display = 'inline-flex'
+      button.style.justifyContent = 'center'
+      button.style.maxWidth = '480px'
+      button.style.overflow = 'hidden'
+      button.style.outlineWidth = '2px'
+      button.style.transitionProperty = 'background-color, box-shadow, color'
+      button.style.verticalAlign = 'middle'
+      button.style.backgroundColor = '#0073b1'
+      button.style.color = 'white';
+      button.style.fontSize = '1.6rem'
+      button.style.minHeight = '40px'
+      button.style.lineHeight = '20px'
+      button.style.marginTop = '8px'
+
+      injects[0].appendChild(button)
+
+      button.addEventListener('click', () => {
+        this.setState({
+          iframeOpen: true
+        })
+
+        injects[0].removeChild(button)
+      })
+    }
+
+    injectClose = () => {
+      const injects = document.getElementsByClassName('pv-top-card-v2-section__actions')
+      console.log(injects)
+      const button = document.createElement('button')
+      button.className = 'openIframe'
+      button.innerText = 'close The extension'
+      button.style.transitionTimingFunction = 'cubic-bezier(.4, 0, .2, 1)'
+      button.style.transitionDuration = '167ms'
+      button.style.alignItems = 'center'
+      button.style.border = 'none'
+      button.style.borderRadius = '2px'
+      button.style.boxSizing = 'border-box'
+      button.style.cursor = 'pointer'
+      button.style.fontFamily = 'inherit'
+      button.style.fontWeight = '600'
+      button.style.display = 'inline-flex'
+      button.style.justifyContent = 'center'
+      button.style.maxWidth = '480px'
+      button.style.overflow = 'hidden'
+      button.style.outlineWidth = '2px'
+      button.style.transitionProperty = 'background-color, box-shadow, color'
+      button.style.verticalAlign = 'middle'
+      button.style.backgroundColor = '#0073b1'
+      button.style.color = 'white';
+      button.style.fontSize = '1.6rem'
+      button.style.minHeight = '40px'
+      button.style.lineHeight = '20px'
+      button.style.marginTop = '8px'
+
+      injects[0].appendChild(button)
+
+      const body = document.querySelector('body')
+      console.log('body',body)
+
+      const inject = document.getElementsByClassName('iframe')
+        console.log('111',inject[0])
+
+      button.addEventListener('click', () => {
+        this.setState({
+          iframeOpen: false
+        })
+
+        injects[0].removeChild(button)
         
-    }
-
-    sendBackend = () => {
-        const firstName = localStorage.getItem("firstName")
-        const lastName = localStorage.getItem('lastName')
-        const id = localStorage.getItem('id')
-        store.dispatch({type: "GET_LOGIN_INFO", firstname: firstName, lastname: lastName, id: id})
-        // return <Redirect to='/' />
-    }
-
-    injectIframe = () => {
-        const inject = document.querySelector('body')
-        const iframe = document.createElement('iframe');
-        iframe.className = 'iframe'
-        iframe.src = "chrome-extension://ahmiihehkjgljakabbilhepgnolajkkj/pages/iframe.html"
-        iframe.width = '452px'
-        iframe.style.zIndex = "2147483647";
-        iframe.style.top = "0px"
-        iframe.style.opacity = '1'
-        iframe.style.position = 'fixed'
-        iframe.style.height = '100%'
-        iframe.style.display = 'block'
-        iframe.style.right = '-4px'
-        iframe.style.backgroundColor = 'white'
-        inject.appendChild(iframe);
-    }
-
-    getLinkiedElemet = () => {
-        const name = document.getElementsByClassName('pv-top-card-section__name')[0].innerText
-        const jobTitle = document.getElementsByClassName('pv-top-card-section__headline')[0].innerText
-        const location = document.getElementsByClassName('pv-top-card-section__location')[0].innerText
-        
-        store.dispatch({type: 'LINK_INFO', name: name, jobTitle: jobTitle, location: location})
+        body.removeChild(inject[0])
+      })
     }
 
     
-    render() {
-        console.log(window.location.hostname)
-        console.log(window.location.hostname === 'linkedinextension.netlify.com')
+    
+    injectIframe = () => {
+        const inject = document.querySelector("body");
+        const iframe = document.createElement("iframe");
+        iframe.className = "iframe";
+        iframe.src =
+        "chrome-extension://ahmiihehkjgljakabbilhepgnolajkkj/pages/iframe.html";
+        iframe.width = "452px";
+        iframe.style.zIndex = "2147483647";
+        iframe.style.top = "0px";
+        iframe.style.opacity = "1";
+        iframe.style.position = "fixed";
+        iframe.style.height = "100%";
+        iframe.style.display = "block";
+        iframe.style.right = "-4px";
+        iframe.style.backgroundColor = "white";
+        inject.appendChild(iframe);
+    };
+    
+    sendBackend = () => {
+      const firstName = localStorage.getItem("firstName");
+      const lastName = localStorage.getItem("lastName");
+      const id = localStorage.getItem("id");
+      console.log('this.props', firstName)
+      
+      store.dispatch({type: 'adias@LOGIN', firstName: firstName, lastName: lastName, id: id})
+    };
 
-        let content = null;
+    getLinkiedElemet = () => {
 
-        if (window.location.hostname === 'linkedinextension.netlify.com') {
-            content = (
-                <div>
-                    {this.sendBackend()}
-                </div>
-            )
+      function scrollMiddle() {
+          console.log("scroll middle");
+      
+          window.scrollTo(0, document.body.scrollHeight/2)
+
+      }
+      window.setTimeout(scrollMiddle, 1000);
+
+      function scrollTop() {
+          console.log("scroll top");
+      
+          window.scrollTo(0,0)
+
+      }
+      window.setTimeout(scrollTop, 2000);
+
+
+
+    function getFields() {
+        console.log("get fields")
+        const name = document.getElementsByClassName(
+        "pv-top-card-section__name "
+        )[0].innerText;
+        console.log(name, "backn");
+        const jobTitle = document.getElementsByClassName(
+        "pv-top-card-section__headline "
+        )[0].innerText;
+        console.log(jobTitle, "backj");
+
+        const location = document.getElementsByClassName(
+        "pv-top-card-section__location"
+        )[0].innerText;
+        console.log(location, "backl");
+
+        let skills = document.getElementsByClassName(
+            "pv-skill-category-entity__name-text"
+        );
+    
+        console.log("rawskills", skills);
+        let parsedSkills = [];
+        for (let i = 0; i < skills.length; i++) {
+            console.log("infor", i, parsedSkills);
+            parsedSkills[i] = skills[i].innerText;
         }
-        else if (window.location.hostname === 'www.linkedin.com') {
-            content = (
-                <div>
-                    hello
-                    {this.injectIframe()}
-                    {this.getLinkiedElemet()}
-                </div>
-            )
-        }
-        
+        const top3skills = parsedSkills.toString();
+        console.log(top3skills, "backskills");
 
-        return (
-            <div>
-                {content}
-            </div>
-        ) 
+        store.dispatch({
+        type: "LINK_INFO",
+        name: name,
+        jobTitle: jobTitle,
+        location: location,
+        skills: top3skills
+        });
+      }
+
+      window.setTimeout(getFields, 3000);
+
+
+  };
+
+
+
+  render() {
+
+    let content = null;
+
+    if (window.location.hostname === "linkedinextension.netlify.com") {
+      content = (
+        <div>
+        {console.log('mamamiya')}
+        {console.log('fff',this.props)}
+        {this.sendBackend()}
+        </div>
+      )
+    } else if (window.location.hostname === "www.linkedin.com" && this.state.iframeOpen) {
+      content = (
+        <div>
+          {this.injectIframe()}
+          {this.injectClose()}
+          {this.getLinkiedElemet()}
+        </div>
+      );
+    } else if (window.location.hostname === "www.linkedin.com" && !this.state.iframeOpen) {
+      content = (
+        <div>
+          {console.log('i am open')}
+          {this.injectOpen()}
+        </div>
+      )
     }
+
+    return <div>{content}</div>;
+  }
 }
 
-const mapStateToProps = state => {
-    return {
+export default App
 
-    }
-}
-
-export default connect(mapStateToProps)(App)
-
-window.addEventListener('load', () => {
-
-    const injectDOM = document.createElement('div');
-    injectDOM.className = 'inject-react';
-    injectDOM.style.textAlign = 'center';
-    document.body.appendChild(injectDOM);
-    render(
+window.addEventListener("load", () => {
+  const injectDOM = document.createElement("div");
+  injectDOM.className = "inject-react";
+  injectDOM.style.textAlign = "center";
+  document.body.appendChild(injectDOM);
+  render(
     <Provider store={store}>
-        <Router>
-            <App />
-        </Router>
-    </Provider>
-    , injectDOM);
+      <Router>
+        <App />
+      </Router>
+    </Provider>,
+    injectDOM
+  );
 });
-
-
