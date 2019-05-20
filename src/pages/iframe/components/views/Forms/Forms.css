@@ -9,32 +9,6 @@
   justify-content: space-around;
 }
 
-.Name {
-  margin-right: 30px;
-}
-.Field {
-  width: 30%;
-}
-
-.Empty {
-  width: 30%;
-}
-
-.Hello {
-  font-weight: bold;
-}
-
-#Top {
-  display: flex;
-  width: 410px;
-  height: 32px;
-  flex-direction: row;
-  background-color: red;
-  font-size: 12px;
-  font-weight: bold;
-  align-items: center;
-}
-
 .FormsWrapper {
   display: flex;
   flex-direction: column;

@@ -5,11 +5,16 @@ import "./NavBar.css";
 
 const navBar = props => (
   <div className="Nav">
-    <NavLink activeClassName="active" className="NavLink" to="/">
+    <NavLink activeClassName="active" className="NavLink" exact={true} to="/">
       Forms
     </NavLink>
 
-    <NavLink activeClassName="active" className="NavLink" to="/scrape">
+    <NavLink
+      activeClassName="active"
+      id="right"
+      className="NavLink"
+      to="/scrape"
+    >
       Scrape
     </NavLink>
   </div>

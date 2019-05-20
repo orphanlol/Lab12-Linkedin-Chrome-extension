@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {Store} from 'webext-redux'
+import { Store } from "webext-redux";
+import "./UpdateForm.css";
 
 const store = new Store({
-    portName: 'COUNTING',
-})
+  portName: "COUNTING"
+});
 
 class UpdateIndivForm extends Component {
   state = {
@@ -49,7 +50,7 @@ class UpdateIndivForm extends Component {
   };
 
   render() {
-      console.log(this.state.form)
+    console.log(this.state.form);
     return (
       <div>
         <form>
@@ -127,14 +128,18 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-        getIndivForm: () => store.dispatch({type: 'alias@GET_INDIV_FORM'}),
-        updateForm: (form, field) => store.dispatch({type: 'alias@UPDATE_FORM', form: form, field: field}),
-        getField: (formId) => store.dispatch({type: 'alias@GET_FIELD', formId: formId}),
-        deleteField: (target) => store.dispatch({type: 'alias@DELETE_FIELD', target: target})
-    }
-} 
+  return {
+    getIndivForm: () => store.dispatch({ type: "alias@GET_INDIV_FORM" }),
+    updateForm: (form, field) =>
+      store.dispatch({ type: "alias@UPDATE_FORM", form: form, field: field }),
+    getField: formId =>
+      store.dispatch({ type: "alias@GET_FIELD", formId: formId }),
+    deleteField: target =>
+      store.dispatch({ type: "alias@DELETE_FIELD", target: target })
+  };
+};
 
 export default connect(
-  mapStateToProps, mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(UpdateIndivForm);

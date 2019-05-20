@@ -51,7 +51,10 @@ class Form extends Component {
         <div className="Name">{name}</div>
         <div className="FieldCount">Field Count:{field_count}</div>
         <div>
-          <button onClick={() => this.addFormToUpdate(this.props.form)}>
+          <button
+            className="Edit"
+            onClick={() => this.addFormToUpdate(this.props.form)}
+          >
             edit
           </button>
         </div>
