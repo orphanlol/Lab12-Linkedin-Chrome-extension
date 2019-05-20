@@ -2,6 +2,7 @@ const initialState = {
     name: null,
     jobTitle: null,
     location: null,
+    skills: null
 
 }
 
@@ -12,7 +13,8 @@ const linkInfo = ( state = initialState, action ) => {
                 ...state,
                 name: action.name,
                 jobTitle: action.jobTitle,
-                location: action.location
+                location: action.location,
+                skills: action.skills
             }
         default: return state
     }

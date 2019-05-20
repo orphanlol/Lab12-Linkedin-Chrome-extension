@@ -12,7 +12,7 @@ const store = new Store({
     state = {
       fields: [{ name: "" }],
       name: "",
-      fieldOptions: ["Job Title", "Name", "Location"]
+      fieldOptions: ["Job Title", "Name", "Location", "Skills"]
     };
   
     handleChange = e => {

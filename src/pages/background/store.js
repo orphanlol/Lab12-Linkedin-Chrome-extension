@@ -8,6 +8,7 @@ import { saveState, loadState } from './localStorage';
 
 import {getForm, deleteForm, addForm, getIndivForm, updateForm, addFormToUpdate} from './actions/formActions'
 import {getField, deleteField} from './actions/formFieldActions'
+import {getLogin} from './actions/actions'
 
 const aliases = {
   'alias@GET_FORM': getForm,
@@ -17,7 +18,8 @@ const aliases = {
   'alias@UPDATE_FORM': updateForm,
   'alias@GET_FIELD': getField,
   'alias@DELETE_FIELD': deleteField,
-  'adias@ADD_FORM_TO_UPDATE': addFormToUpdate
+  'adias@ADD_FORM_TO_UPDATE': addFormToUpdate,
+  'adias@LOGIN': getLogin
 }
 
 const store = createStore(
