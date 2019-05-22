@@ -182,6 +182,32 @@ class App extends Component {
       const top3skills = parsedSkills.toString();
       console.log(top3skills, "backskills");
 
+      let jobs = document
+        .getElementsByClassName(
+          "pv-profile-section experience-section ember-view"
+        )[0]
+        .getElementsByClassName("t-16 t-black t-bold");
+      console.log(jobs, "jobs");
+
+      let parsedJobs = [];
+      for (let i = 0; i < jobs.length; i++) {
+        console.log("injobsfor", i, parsedJobs);
+        parsedJobs[i] = jobs[i].innerText;
+      }
+      const topJobs = parsedJobs.toString();
+      console.log(topJobs, "topJobs");
+
+      let education = document.getElementsByClassName("pv-entity__degree-info");
+      console.log(education, "education");
+
+      let parsedEducation = [];
+      for (let i = 0; i < education.length; i++) {
+        console.log("inedufor", i, parsedEducation);
+        parsedEducation[i] = education[i].innerText;
+      }
+      const degrees = parsedEducation.toString();
+      console.log(degrees, "degrees");
+
       store.dispatch({
         type: "LINK_INFO",
         name: name,
