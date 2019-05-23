@@ -48,10 +48,11 @@ class App extends Component {
     injects[0].appendChild(button);
 
     button.addEventListener("click", () => {
+      console.log("begin click open");
       this.setState({
         iframeOpen: true
       });
-
+      console.log("fuck", injects);
       injects[0].removeChild(button);
     });
   };
@@ -96,6 +97,7 @@ class App extends Component {
     console.log("111", inject[0]);
 
     button.addEventListener("click", () => {
+      console.log("begin click close");
       this.setState({
         iframeOpen: false
       });
@@ -105,7 +107,6 @@ class App extends Component {
       body.removeChild(inject[0]);
     });
   };
-
   injectIframe = () => {
     const inject = document.querySelector("body");
     const iframe = document.createElement("iframe");
@@ -128,64 +129,79 @@ class App extends Component {
     const firstName = localStorage.getItem("firstName");
     const lastName = localStorage.getItem("lastName");
     const id = localStorage.getItem("id");
+    const userId = localStorage.getItem("user_id");
+    const token = localStorage.getItem("token");
     console.log("this.props", firstName);
 
     store.dispatch({
       type: "adias@LOGIN",
       firstName: firstName,
       lastName: lastName,
-      id: id
+      id: id,
+      user_id: userId,
+      token: token
     });
   };
+
+  // getLinkiedElemet = () => {
+  //   function scrollMiddle() {
+  //     console.log("scroll middle");
+
+  //     window.scrollTo(0, document.body.scrollHeight / 2);
+  //   }
+  //   window.setTimeout(scrollMiddle, 1000);
+  // }
+
+  // injectIframe = () => {
+  //   const inject = document.querySelector("body");
+  //   const iframe = document.createElement("iframe");
+  //   iframe.className = "iframe";
+  //   iframe.src =
+  //     "chrome-extension://fajgjcfafoeojlbmhknnhonghielcgbp/pages/iframe.html";
+  //   iframe.width = "452px";
+  //   iframe.style.zIndex = "2147483647";
+  //   iframe.style.top = "0px";
+  //   iframe.style.opacity = "1";
+  //   iframe.style.position = "fixed";
+  //   iframe.style.height = "100%";
+  //   iframe.style.display = "block";
+  //   iframe.style.right = "-4px";
+  //   iframe.style.backgroundColor = "white";
+  //   inject.appendChild(iframe);
+  // };
+
+  // sendBackend = () => {
+  //   const firstName = localStorage.getItem("firstName");
+  //   const lastName = localStorage.getItem("lastName");
+  //   const id = localStorage.getItem("id");
+  //   const userId = localStorage.getItem("user_id");
+  //   const token = localStorage.getItem("token");
+  //   console.log("this.props", firstName);
+
+  //   store.dispatch({
+  //     type: "adias@LOGIN",
+  //     firstName: firstName,
+  //     lastName: lastName,
+  //     id: id,
+  //     user_id: userId,
+  //     token: token
+  //   });
+  // };
 
   getLinkiedElemet = () => {
     function scrollMiddle() {
       console.log("scroll middle");
 
       window.scrollTo(0, document.body.scrollHeight / 2);
-    }
-    window.setTimeout(scrollMiddle, 1000);
-
-    
-    
-    injectIframe = () => {
-        const inject = document.querySelector("body");
-        const iframe = document.createElement("iframe");
-        iframe.className = "iframe";
-        iframe.src =
-        "chrome-extension://ahmiihehkjgljakabbilhepgnolajkkj/pages/iframe.html";
-        iframe.width = "452px";
-        iframe.style.zIndex = "2147483647";
-        iframe.style.top = "0px";
-        iframe.style.opacity = "1";
-        iframe.style.position = "fixed";
-        iframe.style.height = "100%";
-        iframe.style.display = "block";
-        iframe.style.right = "-4px";
-        iframe.style.backgroundColor = "white";
-        inject.appendChild(iframe);
-    };
-    
-    sendBackend = () => {
-      const firstName = localStorage.getItem("firstName");
-      const lastName = localStorage.getItem("lastName");
-      const id = localStorage.getItem("id");
-      const userId = localStorage.getItem('user_id')
-      const token = localStorage.getItem('token')
-      console.log('this.props', firstName)
-      
-      store.dispatch({type: 'adias@LOGIN', firstName: firstName, lastName: lastName, id: id, user_id: userId, token: token})
-    };
-
-    getLinkiedElemet = () => {
-
-      function scrollMiddle() {
-          console.log("scroll middle");
-      
-          window.scrollTo(0, document.body.scrollHeight/2)
 
       window.scrollTo(0, 0);
     }
+    window.setTimeout(scrollMiddle, 1000);
+
+    function scrollTop() {
+      window.scrollTo(0, 0);
+    }
+
     window.setTimeout(scrollTop, 2000);
 
     function getFields() {
@@ -204,51 +220,51 @@ class App extends Component {
       )[0].innerText;
       console.log(location, "backl");
 
-      let skills = document.getElementsByClassName(
-        "pv-skill-category-entity__name-text t-16 t-black t-bold"
-      );
+      // let skills = document.getElementsByClassName(
+      //   "pv-skill-category-entity__name-text t-16 t-black t-bold"
+      // );
 
-      console.log("rawskills", skills);
-      let parsedSkills = [];
-      for (let i = 0; i < skills.length; i++) {
-        console.log("infor", i, parsedSkills);
-        parsedSkills[i] = skills[i].innerText;
-      }
-      const top3skills = parsedSkills.toString();
-      console.log(top3skills, "backskills");
+      // console.log("rawskills", skills);
+      // let parsedSkills = [];
+      // for (let i = 0; i < skills.length; i++) {
+      //   console.log("infor", i, parsedSkills);
+      //   parsedSkills[i] = skills[i].innerText;
+      // }
+      // const top3skills = parsedSkills.toString();
+      // console.log(top3skills, "backskills");
 
-      let jobs = document
-        .getElementsByClassName(
-          "pv-profile-section experience-section ember-view"
-        )[0]
-        .getElementsByClassName("t-16 t-black t-bold");
-      console.log(jobs, "jobs");
+      // let jobs = document
+      //   .getElementsByClassName(
+      //     "pv-profile-section experience-section ember-view"
+      //   )[0]
+      //   .getElementsByClassName("t-16 t-black t-bold");
+      // console.log(jobs, "jobs");
 
-      let parsedJobs = [];
-      for (let i = 0; i < jobs.length; i++) {
-        console.log("injobsfor", i, parsedJobs);
-        parsedJobs[i] = jobs[i].innerText;
-      }
-      const topJobs = parsedJobs.toString();
-      console.log(topJobs, "topJobs");
+      // let parsedJobs = [];
+      // for (let i = 0; i < jobs.length; i++) {
+      //   console.log("injobsfor", i, parsedJobs);
+      //   parsedJobs[i] = jobs[i].innerText;
+      // }
+      // const topJobs = parsedJobs.toString();
+      // console.log(topJobs, "topJobs");
 
-      let education = document.getElementsByClassName("pv-entity__degree-info");
-      console.log(education, "education");
+      // let education = document.getElementsByClassName("pv-entity__degree-info");
+      // console.log(education, "education");
 
-      let parsedEducation = [];
-      for (let i = 0; i < education.length; i++) {
-        console.log("inedufor", i, parsedEducation);
-        parsedEducation[i] = education[i].innerText;
-      }
-      const degrees = parsedEducation.toString();
-      console.log(degrees, "degrees");
+      // let parsedEducation = [];
+      // for (let i = 0; i < education.length; i++) {
+      //   console.log("inedufor", i, parsedEducation);
+      //   parsedEducation[i] = education[i].innerText;
+      // }
+      // const degrees = parsedEducation.toString();
+      // console.log(degrees, "degrees");
 
       store.dispatch({
         type: "LINK_INFO",
         name: name,
         jobTitle: jobTitle,
-        location: location,
-        skills: top3skills
+        location: location
+        // skills: top3skills
       });
     }
 
