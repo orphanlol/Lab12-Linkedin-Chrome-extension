@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {Store} from 'webext-redux'
+import { Store } from "webext-redux";
+import "./UpdateForm.css";
 
 const store = new Store({
-    portName: 'COUNTING',
-})
+  portName: "COUNTING"
+});
 
 class UpdateIndivForm extends Component {
   state = {
@@ -17,15 +18,14 @@ class UpdateIndivForm extends Component {
     let url_string = window.location.href; //window.location.href
     let url = new URL(url_string);
     let id = url.searchParams.get("id");
-    console.log('url', url_string)
-    console.log('url2', url)
-    console.log('urlid', id)
+    console.log("url", url_string);
+    console.log("url2", url);
+    console.log("urlid", id);
     await this.props.getIndivForm(id);
     await this.setState({ form: this.props.formToUpdate });
-    console.log('after set state',this.state.form)
+    console.log("after set state", this.state.form);
     await this.props.getField(this.props.formToUpdate.id);
     await this.setState({ fields: this.props.fieldsToUpdate });
-    
   }
 
   handleChangeForm = e => {
@@ -55,7 +55,7 @@ class UpdateIndivForm extends Component {
   };
 
   render() {
-      console.log(this.state.form)
+    console.log(this.state.form);
     return (
       <div>
         <form>
@@ -133,14 +133,19 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-        getIndivForm: (id) => store.dispatch({type: 'alias@GET_INDIV_FORM',id: id}),
-        updateForm: (form, field) => store.dispatch({type: 'alias@UPDATE_FORM', form: form, field: field}),
-        getField: (formId) => store.dispatch({type: 'alias@GET_FIELD', formId: formId}),
-        deleteField: (target) => store.dispatch({type: 'alias@DELETE_FIELD', target: target})
-    }
-} 
+  return {
+    getIndivForm: id =>
+      store.dispatch({ type: "alias@GET_INDIV_FORM", id: id }),
+    updateForm: (form, field) =>
+      store.dispatch({ type: "alias@UPDATE_FORM", form: form, field: field }),
+    getField: formId =>
+      store.dispatch({ type: "alias@GET_FIELD", formId: formId }),
+    deleteField: target =>
+      store.dispatch({ type: "alias@DELETE_FIELD", target: target })
+  };
+};
 
 export default connect(
-  mapStateToProps, mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(UpdateIndivForm);

@@ -1,53 +1,23 @@
-.Body {
-  width: 410px;
-  height: 580px;
-  padding: 10px;
-}
-
-.Header {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-}
-
-.Save {
-  width: 50px;
-}
-
-.Title {
-  text-align: left;
-  padding-bottom: 10px;
-}
-
-.FormInput {
-  text-align: left;
-  padding-bottom: 10px;
-}
-
-.SubTitle {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 10px;
-}
-
-.PageWrapperNF {
+.PageWrapperUF {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.CancelNF {
+.CancelUF {
   max-width: 1100px;
   width: 100%;
   margin: 20px 0;
+  padding-left: 20px;
   text-align: left;
   text-decoration: none;
 }
-.CancelNF:hover {
+
+.CancelUF:hover {
   text-decoration: underline;
 }
 
-.FormWrapperNF {
+.FormWrapperUF {
   max-width: 1060px;
   width: 100%;
   height: 500px;
@@ -55,17 +25,14 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  padding-left: 50px;
-  padding-right: 50px;
+  padding: 50px;
 }
 
-.FormNF {
+.FormUF {
   display: flex;
   flex-direction: column;
   align-items: left;
-}
 
-.FormNF .inputNF {
   color: #0284b1;
   padding-left: 10px;
   width: 300px;
@@ -73,37 +40,36 @@
   font-size: 24px;
 }
 
-.FieldNF {
+.FieldUF {
   margin-top: 20px;
 }
 
-.FieldSelectDeleteNF {
+.FieldSelectDeleteUF {
   display: flex;
   margin-top: 5px;
-  height: 30px;
 }
 
-.SelectFieldNF {
+.SelectFieldUF {
   width: 150px;
   height: 25px;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.DeleteFieldNF {
+.DeleteFieldUF {
   margin-left: 20px;
   border-radius: 5px;
   cursor: pointer;
-  height: 20px;
 }
-.DeleteFieldNF:hover {
+
+.DeleteFieldUF:hover {
   color: red;
   border-color: red;
 }
 
-.AddFieldBtnNF {
+.AddFieldBtnUF {
   height: 30px;
-  width: 100px;
+  width: 75px;
   margin: 20px 0;
   border: 1px solid #0284b1;
   margin-top: 20px;
@@ -114,13 +80,12 @@
   font-size: 14px;
   background-image: linear-gradient(-180deg, #0387fa, #0284b1, 90%);
 }
-.AddFieldBtnNF:hover {
+.AddFieldBtnUF:hover {
   border: 1px solid #02659e;
   background-image: linear-gradient(-180deg, #0284b1, #02659e 90%);
 }
 
-.SubmitBtnNF {
-  margin-left: 10px;
+.SubmitBtnUF {
   height: 30px;
   width: 100px;
   border: 1px solid #0284b1;
@@ -131,15 +96,7 @@
   font-size: 14px;
   background-image: linear-gradient(-180deg, #0387fa, #0284b1, 90%);
 }
-
-.SubmitBtnNF:hover {
+.SubmitBtnUF:hover {
   border: 1px solid #02659e;
   background-image: linear-gradient(-180deg, #0284b1, #02659e 90%);
-}
-
-.NameNF {
-  margin-bottom: 15px;
-  color: #0284b1;
-  height: 30px;
-  font-size: 24px;
 }
