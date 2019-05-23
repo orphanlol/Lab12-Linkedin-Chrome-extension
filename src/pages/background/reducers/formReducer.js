@@ -31,11 +31,12 @@ import {
   const initialState = {
     forms: null,
     isLoading: true,
-    isAdding: false,
-    gettingForm: false,
-    isDeleting: false,
-    isUpdating: false,
-    formToUpdate: null,
+    isAdding: true,
+    gettingForm: true,
+    isDeleting: true,
+    isUpdating: true,
+    formToUpdate: true,
+    isADDUpdateForm: true,
     error: ""
   };
   
@@ -61,18 +62,18 @@ import {
           forms: action.payload,
           error: action.ERROR
         };
-        case DELETE_FORM_START:
-      return {
+      case DELETE_FORM_START:
+        return {
         ...state,
         isDeleting: true,
         error: ""
-      };
-       case DELETE_FORM_SUCCESS:
-      return {
-        ...state,
-        isDeleting: false,
-        error: ""
-      };
+        };
+      case DELETE_FORM_SUCCESS:
+        return {
+          ...state,
+          isDeleting: false,
+          error: ""
+        };
     case DELETE_FORM_FAILURE:
       return {
         ...state,
@@ -162,7 +163,6 @@ import {
         error: ""
       };
     case DELETE_FIELDS_SUCCESS:
-      console.log(action, "act");
       return {
         ...state,
         isDeleting: false,
@@ -177,17 +177,20 @@ import {
     case ADD_UPDATE_FORM_START:
       return {
         ...state,
+        isADDUpdateForm: true,
         error: ""
       };
     case ADD_UPDATE_FORM_SUCCESS:
       return {
         ...state,
+        isADDUpdateForm: false,
         formToUpdate: action.payload,
         error: ""
       };
     case ADD_UPDATE_FORM_FAILURE:
       return {
         ...state,
+        isADDUpdateForm: false,
         error: ""
       };
       default:
