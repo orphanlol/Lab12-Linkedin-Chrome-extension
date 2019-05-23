@@ -1,7 +1,8 @@
 import { applyMiddleware, createStore, compose } from 'redux'
 import { wrapStore, alias } from 'webext-redux'
 import { logger } from 'redux-logger'
-import thunk from 'redux-thunk'
+import thunkMiddleware from 'redux-thunk'
+
 import reducer from './reducers'
 import throttle from 'lodash/throttle';
 import { saveState, loadState } from './localStorage';
@@ -27,7 +28,7 @@ const store = createStore(
   loadState(),
     applyMiddleware(
       alias(aliases),
-      thunk,
+      thunkMiddleware,
       logger,
     )
 );

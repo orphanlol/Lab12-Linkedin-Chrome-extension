@@ -54,9 +54,10 @@ class Scrape extends Component {
   }
 
   getSelectedFormFields = async () => {
+    console.log('formID', this.props.forms)
     for (let i = 0; i < this.props.forms.length; i++) {
       if (this.props.forms[i].name === this.state.selectedFormName) {
-        await this.setState({ selectedFormId: this.props.forms[i].form_id });
+        await this.setState({ selectedFormId: this.props.forms[i].id });
       }
     }
     await this.props.getField(this.state.selectedFormId);
@@ -126,7 +127,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-      getForm: id => store.dispatch({type: 'alias@ADD_FORM', id: id}),
+      getForm: (id) => store.dispatch({type: 'alias@GET_FORM', id: id}),
       getField: (formId) => store.dispatch({type: 'alias@GET_FIELD', formId: formId})
     };
   };

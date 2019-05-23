@@ -18,9 +18,11 @@ class Form extends Component {
     this.props.history.push('/')
   };
 
-  addFormToUpdate = form => {
-    this.props.addFormToUpdate(form);
-    this.props.history.push("/update-form");
+  addFormToUpdate = async form => {
+    // await this.props.addFormToUpdate(form);
+    console.log('form_id', this.props.formToUpdate)
+    await this.props.history.push(
+      `/update-form/?id=${form.form_id}`);
   };
 
   render() {
@@ -36,11 +38,12 @@ class Form extends Component {
         </div>
         <div className="Delete">
           <button
-            onClick={() => {
+            onClick={(e) => {
               if (window.confirm("Are you sure you want to delete this form?"))
                 this.deleteForm(
                   this.props.form.user_id,
-                  this.props.form.form_id
+                  this.props.form.form_id,
+                  e.stopPropagation()
                 );
             }}
           >
@@ -52,6 +55,12 @@ class Form extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    formToUpdate: state.formReducer.formToUpdate
+  };
+};
+
 const mapDispatchToProps = dispatch => {
     return {
         deleteForm: (userId, formId) => store.dispatch({type: "alias@DELETE_FORM", userId: userId, formId:formId}),
@@ -59,4 +68,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Form));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Form));

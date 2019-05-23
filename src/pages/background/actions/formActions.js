@@ -12,7 +12,11 @@ export const getForm = (id) => dispatch => {
   dispatch({ type: GET_FORM_START });
   axios
     .get(
-      `https://linkedinextension.herokuapp.com/api/forms/${id.id}`
+      `https://linkedinextension.herokuapp.com/api/forms/${id.id}`, {
+        headers: {
+          Authorization: window.localStorage.token
+        }
+      }
     )
     .then(res => res.data)
     .then(forms => {
@@ -29,7 +33,11 @@ export const DELETE_FORM_FAILURE = "DELETE_FORM_FAILURE";
 
 export const deleteForm = (id) =>  {
   const deletedForm = axios.delete(
-    `https://linkedinextension.herokuapp.com/api/forms/${id.userId}/${id.formId}`
+    `https://linkedinextension.herokuapp.com/api/forms/${id.userId}/${id.formId}`, {
+      headers: {
+        Authorization: window.localStorage.token
+      }
+    }
   );
   return dispatch => {
     dispatch({ type: DELETE_FORM_START });
@@ -57,7 +65,12 @@ export const addForm = newForm => dispatch => {
         "id"
       )}`,
       {
-        name: newForm.newForm.name
+        name: newForm.form.name
+      }
+      ,{
+        headers: {
+          Authorization: window.localStorage.token
+        }
       }
     )
     .then(id => {
@@ -68,6 +81,10 @@ export const addForm = newForm => dispatch => {
           .post(`https://linkedinextension.herokuapp.com/api/fields/field`, {
             form_id: id.data,
             name: newForm.newForm.fields[i].name
+          },{
+            headers: {
+              Authorization: window.localStorage.token
+            }
           })
           .then(res => {
             console.log(res, "field res");
@@ -82,17 +99,22 @@ export const addForm = newForm => dispatch => {
     });
 };
 
-export const GET_INDIVFORM_START = "GET_INDIVDEPT_START";
-export const GET_INDIVFORM_SUCCESS = "GET_INDIVDEPT_SUCCESS";
-export const GET_INDIVFORM_FAILURE = "GET_INDIVDEPT_FAILURE";
+export const GET_INDIVFORM_START = "GET_INDIVFORM_START";
+export const GET_INDIVFORM_SUCCESS = "GET_INDIVFORM_SUCCESS";
+export const GET_INDIVFORM_FAILURE = "GET_INDIVFORM_FAILURE";
 
-export const getIndivForm = formId => dispatch => {
+export const getIndivForm =  formId => dispatch => {
+  console.log('formId',formId)
   dispatch({ type: GET_INDIVFORM_START });
   axios
-    .get(`https://linkedinextension.herokuapp.com/api/forms/${localStorage.getItem("id")}/${formId}`)
-    .then(res => res.data)
+    .get(`https://linkedinextension.herokuapp.com/api/forms/${localStorage.getItem("id")}/${formId.id}`, {
+      headers: {
+        Authorization: window.localStorage.token
+      }
+    })
     .then(form => {
-      dispatch({ type: GET_INDIVFORM_SUCCESS, payload: form });
+      console.log(form, "form in action in")
+      dispatch({ type: ADD_UPDATE_FORM_SUCCESS, payload: form.data });
     })
     .catch(err => {
       dispatch({ type: GET_INDIVFORM_FAILURE, payload: err });
@@ -108,8 +130,12 @@ export const updateForm = (newForm) => dispatch => {
   dispatch({ type: UPDATE_FORM_START });
   axios
     .put(
-      `https://linkedinextension.herokuapp.com/api/forms/${newForm.form.user_id}/${newForm.form.form_id}`,
-      newForm.form
+      `https://linkedinextension.herokuapp.com/api/forms/${newForm.form.user_id}/${newForm.form.id}`,
+      newForm.form, {
+        headers: {
+          Authorization: window.localStorage.token
+        }
+      }
     )
     .then(res => res.data)
     .then(form => {
@@ -121,7 +147,11 @@ export const updateForm = (newForm) => dispatch => {
 
   for (let i = 0; i < newForm.field.length; i++) {
     axios
-      .put(`https://linkedinextension.herokuapp.com/api/fields/field`, newForm.field[i])
+      .put(`https://linkedinextension.herokuapp.com/api/fields/field`, newForm.field[i], {
+        headers: {
+          Authorization: window.localStorage.token
+        }
+      })
       .then(res => {
         console.log(res);
       })
