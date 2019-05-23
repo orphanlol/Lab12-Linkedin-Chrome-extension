@@ -128,9 +128,11 @@ class App extends Component {
       const firstName = localStorage.getItem("firstName");
       const lastName = localStorage.getItem("lastName");
       const id = localStorage.getItem("id");
+      const userId = localStorage.getItem('user_id')
+      const token = localStorage.getItem('token')
       console.log('this.props', firstName)
       
-      store.dispatch({type: 'adias@LOGIN', firstName: firstName, lastName: lastName, id: id})
+      store.dispatch({type: 'adias@LOGIN', firstName: firstName, lastName: lastName, id: id, user_id: userId, token: token})
     };
 
     getLinkiedElemet = () => {

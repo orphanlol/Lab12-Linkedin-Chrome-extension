@@ -13,5 +13,7 @@ export const getLogin = (info) => dispatch => {
     localStorage.setItem('id',info.id)
     localStorage.setItem('firstName', info.firstName)
     localStorage.setItem('lastName', info.lastName)
+    localStorage.setItem('user_id', info.user_id)
+    localStorage.setItem('token', info.token)
     dispatch({type: LOGIN_INFO_SUCCESS, payload: info})
 }
