@@ -9,18 +9,23 @@ const store = new Store({
 
 class UpdateIndivForm extends Component {
   state = {
-    form: this.props.formToUpdate,
+    form: [],
     fields: [],
     fieldOptions: ["Job Title", "Name", "Location", "Skills"]
   };
 
   async componentDidMount() {
-    console.log(this.state, "1sa");
-    console.log(this.props, "1pr");
-    await this.props.getField(this.props.formToUpdate.form_id);
-    this.setState({ fields: this.props.fieldsToUpdate });
-    console.log(this.state, "2sa");
-    console.log(this.props, "2pr");
+    let url_string = window.location.href; //window.location.href
+    let url = new URL(url_string);
+    let id = url.searchParams.get("id");
+    console.log("url", url_string);
+    console.log("url2", url);
+    console.log("urlid", id);
+    await this.props.getIndivForm(id);
+    await this.setState({ form: this.props.formToUpdate });
+    console.log("after set state", this.state.form);
+    await this.props.getField(this.props.formToUpdate.id);
+    await this.setState({ fields: this.props.fieldsToUpdate });
   }
 
   handleChangeForm = e => {
@@ -129,7 +134,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getIndivForm: () => store.dispatch({ type: "alias@GET_INDIV_FORM" }),
+    getIndivForm: id =>
+      store.dispatch({ type: "alias@GET_INDIV_FORM", id: id }),
     updateForm: (form, field) =>
       store.dispatch({ type: "alias@UPDATE_FORM", form: form, field: field }),
     getField: formId =>

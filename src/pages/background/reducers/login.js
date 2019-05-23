@@ -7,7 +7,9 @@ import {
 const initialState = {
     firstName: null,
     lastName: null,
-    id: null
+    id: null,
+    user_id: null,
+    token: null
 }
 
 const login = ( state = initialState, action ) => {
@@ -21,7 +23,9 @@ const login = ( state = initialState, action ) => {
                 ...state,
                 firstName: action.payload.firstName,
                 lastName: action.payload.lastName,
-                id: action.payload.id
+                id: action.payload.id,
+                user_id: action.payload.user_id,
+                token: action.payload.token
             }
         case LOGIN_INFO_FAIL:
             return {

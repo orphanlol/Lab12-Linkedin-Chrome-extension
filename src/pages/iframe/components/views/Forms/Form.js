@@ -15,9 +15,10 @@ class Form extends Component {
     this.props.history.push("/");
   };
 
-  addFormToUpdate = form => {
-    this.props.addFormToUpdate(form);
-    this.props.history.push("/update-form");
+  addFormToUpdate = async form => {
+    // await this.props.addFormToUpdate(form);
+    console.log("form_id", this.props.formToUpdate);
+    await this.props.history.push(`/update-form/?id=${form.form_id}`);
   };
 
   render() {
@@ -61,11 +62,12 @@ class Form extends Component {
         <div>
           <button
             className="Delete"
-            onClick={() => {
+            onClick={e => {
               if (window.confirm("Are you sure you want to delete this form?"))
                 this.deleteForm(
                   this.props.form.user_id,
-                  this.props.form.form_id
+                  this.props.form.form_id,
+                  e.stopPropagation()
                 );
             }}
           >
@@ -76,6 +78,12 @@ class Form extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    formToUpdate: state.formReducer.formToUpdate
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -92,33 +100,7 @@ const mapDispatchToProps = dispatch => {
 
 export default withRouter(
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )(Form)
 );
-
-// const { id, name, field_count, user_id, form_id } = this.props.form;
-// return (
-//   <div className="Title" key={id}>
-//     <div className="Name">{name}</div>
-//     <div className="Field">{field_count}</div>
-//     <div className="Empty">
-//       <button onClick={() => this.addFormToUpdate(this.props.form)}>
-//         edit
-//       </button>
-//     </div>
-//     <div className="Delete">
-//       <button
-//         onClick={() => {
-//           if (window.confirm("Are you sure you want to delete this form?"))
-//             this.deleteForm(
-//               this.props.form.user_id,
-//               this.props.form.form_id
-//             );
-//         }}
-//       >
-//         X
-//       </button>
-//     </div>
-//   </div>
-// );
