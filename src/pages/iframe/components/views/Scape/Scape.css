@@ -1,15 +1,14 @@
 .Scrape {
-    /* border: 1px solid red; */
-    width: 250px;
-    height: 580px;
-    margin: 10px;
+  width: 410px;
+  height: 580px;
+  margin-right: 10px;
 }
 
 .bold {
-    font-weight: bold;
-    font-size: 20px;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .form {
-    /* border: 1px solid red; */
+  /* border: 1px solid red; */
 }
