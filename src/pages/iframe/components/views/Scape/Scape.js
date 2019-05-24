@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import "./Scape.css";
-import NavBar from '../NavBar/NavBar'
-import {withRouter} from 'react-router'
+import NavBar from "../NavBar/NavBar";
+import { withRouter } from "react-router";
 import { connect } from "react-redux";
-import SelectBox from "./SelectBox";
-import {Store} from 'webext-redux'
+import { Store } from "webext-redux";
 
 const store = new Store({
-    portName: 'COUNTING',
-  })
+  portName: "COUNTING"
+});
 
 class Scrape extends Component {
   state = {
@@ -26,6 +25,7 @@ class Scrape extends Component {
   };
 
   async componentDidMount() {
+    console.log("state at start", this.state);
     await this.props.getForm(localStorage.getItem("id"));
 
     // ****************************
@@ -51,48 +51,72 @@ class Scrape extends Component {
     //     })
     // }
     // ****************************
+    console.log("state at end", this.state);
   }
 
   getSelectedFormFields = async () => {
-    console.log('formID', this.props.forms)
+    console.log("formID", this.props.forms);
     for (let i = 0; i < this.props.forms.length; i++) {
       if (this.props.forms[i].name === this.state.selectedFormName) {
-        await this.setState({ selectedFormId: this.props.forms[i].id });
+        await this.setState({ selectedFormId: this.props.forms[i].form_id });
       }
     }
+    console.log("after set id", this.state);
     await this.props.getField(this.state.selectedFormId);
     this.setState({ selectedFormFields: this.props.getFields });
+    console.log("right before edit", this.state);
+    // this.setState({
+    //   formOptions: [],
+    //   selectedFormName: "",
+    //   selectedFormId: "",
+    //   selectedFormFields: []
+    // });
     this.props.history.push("/edit-scrape");
   };
 
-  handleInput = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  handleChangeField = e => {
+    let selectedFormName = [...this.state.selectedFormName];
+    selectedFormName = e.target.value;
+    this.setState({ selectedFormName }, () => console.log(this.state));
   };
 
   render() {
     return (
-      <div className='Scrape'>
+      <div className="Scrape">
         <NavBar />
-        <div className='bold'>Scrape</div>
+        <div className="centerBox">
+          <div className="bold">Scrape Profile</div>
 
-        <div className='dropDown'>
-          <p>Form: </p>
-          <SelectBox
-            title={"Form"}
-            name={"selectedFormName"}
-            options={this.state.formOptions}
-            value={this.state.selectedForm}
-            placeholder={"Select Form"}
-            onChange={this.handleInput}
-          />
-        </div>
+          <div className="dropDown">
+            <p>Form: </p>
+            <select
+              value={this.state.selectedFormName}
+              onChange={this.handleChangeField}
+            >
+              <option value="" disabled>
+                {"Select Form"}
+              </option>
+              {this.state.formOptions.map((option, idx) => {
+                return (
+                  <option
+                    type="text"
+                    name={option}
+                    data-key={idx}
+                    id={option}
+                    value={option}
+                    className="name"
+                  >
+                    {option}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
 
-        {/* **************************** */}
-        {/* commented out until form rules and/or emailing is implemented and this is needed */}
+          {/* **************************** */}
+          {/* commented out until form rules and/or emailing is implemented and this is needed */}
 
-        {/* <div className = {classes.dropDown}>
+          {/* <div className = {classes.dropDown}>
                     <p>Department: </p>
                     <SelectBox 
                         title={"Department"}
@@ -103,9 +127,15 @@ class Scrape extends Component {
                         onChange={this.handleInput}
                     />
                 </div> */}
-        {/* **************************** */}
+          {/* **************************** */}
 
-        <button onClick={() => this.getSelectedFormFields()}>Scrape</button>
+          <button
+            className="scrapeBtn"
+            onClick={() => this.getSelectedFormFields()}
+          >
+            Scrape
+          </button>
+        </div>
       </div>
     );
   }
@@ -126,12 +156,16 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-      getForm: (id) => store.dispatch({type: 'alias@GET_FORM', id: id}),
-      getField: (formId) => store.dispatch({type: 'alias@GET_FIELD', formId: formId})
-    };
+  return {
+    getForm: id => store.dispatch({ type: "alias@GET_FORM", id: id }),
+    getField: formId =>
+      store.dispatch({ type: "alias@GET_FIELD", formId: formId })
   };
+};
 
-export default withRouter(connect(
-  mapStateToProps, mapDispatchToProps
-)(Scrape));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Scrape)
+);
