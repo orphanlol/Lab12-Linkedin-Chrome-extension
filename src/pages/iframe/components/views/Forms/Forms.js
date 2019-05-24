@@ -32,10 +32,10 @@ class Forms extends Component {
         }
       })
       .then(res => {
-        if (res.data.pro == false && res.data.form_count >= 3) {
+        if (res.data.pro == false && res.data.form_count >= 1) {
           if (
             window.confirm(
-              "You have to have a pro account to make more than 3 forms! \n Please go to main site to if you would like to upgrade."
+              "You have to have a pro account to make more than 1 forms! \n Please go to main site to if you would like to upgrade."
             )
           ) {
             this.props.history.push("/forms");
