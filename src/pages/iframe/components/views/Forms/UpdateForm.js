@@ -37,6 +37,10 @@ class UpdateIndivForm extends Component {
     });
   };
 
+  cancel = () => {
+    this.props.history.push("/");
+  };
+
   handleChangeField = e => {
     let fields = [...this.state.fields];
     fields[e.target.dataset.key].name = e.target.value;
@@ -57,45 +61,53 @@ class UpdateIndivForm extends Component {
   render() {
     console.log(this.state.form);
     return (
-      <div>
-        <form>
-          <input
-            type="text"
-            name="name"
-            value={this.state.form.name}
-            onChange={this.handleChangeForm}
-          />
-          {this.state.fields.map((val, idx) => {
-            let nameId = `name-${idx}`;
-            return (
-              <div key={idx}>
-                <label htmlFor={nameId}>{`Field #${idx + 1}`}</label>
-                <div>
-                  <select
-                    data-key={idx}
-                    value={this.state.fields[idx].name}
-                    onChange={this.handleChangeField}
-                  >
-                    <option value="" disabled>
-                      {"Select Field"}
-                    </option>
-                    {this.state.fieldOptions.map(option => {
-                      return (
-                        <option
-                          type="text"
-                          name={nameId}
-                          data-key={idx}
-                          id={nameId}
-                          value={option}
-                          className="name"
-                        >
-                          {option}
+      <div className="PageWrapperEF">
+        <div className="FormWrapperEF">
+          <div className="Header">
+            <div className="CancelEF" onClick={this.cancel}>
+              {"< Back to forms"}
+            </div>
+          </div>
+          <form className="formBoxEF">
+            <input
+              type="text"
+              name="name"
+              value={this.state.form.name}
+              onChange={this.handleChangeForm}
+              className="NameEF"
+            />
+            {this.state.fields.map((val, idx) => {
+              let nameId = `name-${idx}`;
+              return (
+                <div className="FieldBoxEF" key={idx}>
+                  <label htmlFor={nameId}>{`Field #${idx + 1}`}</label>
+                  <div className="FieldSelectDeleteEF">
+                    <div className="SelectFieldEF">
+                      <select
+                        data-key={idx}
+                        value={this.state.fields[idx].name}
+                        onChange={this.handleChangeField}
+                      >
+                        <option value="" disabled>
+                          {"Select Field"}
                         </option>
-                      );
-                    })}
-                  </select>
-                </div>
-                {/* <input
+                        {this.state.fieldOptions.map(option => {
+                          return (
+                            <option
+                              type="text"
+                              name={nameId}
+                              data-key={idx}
+                              id={nameId}
+                              value={option}
+                              className="name"
+                            >
+                              {option}
+                            </option>
+                          );
+                        })}
+                      </select>
+                    </div>
+                    {/* <input
                   type="text"
                   name={nameId}
                   data-id={idx}
@@ -104,19 +116,24 @@ class UpdateIndivForm extends Component {
                   className="name"
                   onChange={this.handleChangeField}
                 /> */}
-                <button
-                  onClick={e => this.deleteField(e)}
-                  value={this.state.fields[idx].id}
-                >
-                  Delete Field
-                </button>
-              </div>
-            );
-          })}
-          <div>
-            <button onClick={e => this.updateForm(e)}>Save Changes</button>
-          </div>
-        </form>
+                    <button
+                      onClick={e => this.deleteField(e)}
+                      value={this.state.fields[idx].id}
+                      className="DeleteFieldEF"
+                    >
+                      Delete Field
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+            <div className="submitDiv">
+              <button className="SubmitBtnEF" onClick={e => this.updateForm(e)}>
+                Save Changes
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Store } from "webext-redux";
 import jsPDF from "jspdf";
+import { Link } from "react-router-dom";
 import { renderToString } from "react-dom/server";
+import "./EditScrape.css";
 
 const store = new Store({
   portName: "COUNTING"
@@ -16,9 +18,11 @@ class EditScrape extends Component {
 
   async componentDidMount() {
     for (let i = 0; i < this.state.fields.length; i++) {
+      console.log("for start", i, this.state);
       await this.setState(prevState => ({
         scrapedFields: [...prevState.scrapedFields, { text: "", field: "" }]
       }));
+      console.log("for end", i, this.state);
     }
 
     this.state.fields.map((val, idx) => {
@@ -111,10 +115,13 @@ class EditScrape extends Component {
       return (
         <div>
           <header>
-            <span onClick={() => this.props.history.push("/scrape")}>
+            {/* <span onClick={() => this.props.history.push("/scrape")}>
               {" "}
               Cancel{" "}
-            </span>
+            </span> */}
+            <Link className="editLink" to="/">
+              Back to forms
+            </Link>
           </header>
           <h3>Resume: </h3>
           <form>

@@ -15,7 +15,7 @@
 }
 
 .FieldCount {
-  margin-left: 20px;
+  margin-right: 55px;
   width: 130px;
 }
 
@@ -28,7 +28,11 @@
   background-color: #283e48;
 }
 
+.Delete {
+  color: #b50707;
+  border-color: #b50707;
+}
 .Delete:hover {
-  color: red;
-  border-color: red;
+  background-color: #b50707;
+  color: white;
 }

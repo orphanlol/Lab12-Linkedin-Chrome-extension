@@ -48,17 +48,12 @@ class Form extends Component {
 
     const { id, name, field_count, user_id, form_id } = this.props.form;
     return (
-      <div className="FormWrapper">
+      <div
+        className="FormWrapper"
+        onClick={() => this.addFormToUpdate(this.props.form)}
+      >
         <div className="Name">{name}</div>
         <div className="FieldCount">Field Count:{field_count}</div>
-        <div>
-          <button
-            className="Edit"
-            onClick={() => this.addFormToUpdate(this.props.form)}
-          >
-            edit
-          </button>
-        </div>
         <div>
           <button
             className="Delete"
