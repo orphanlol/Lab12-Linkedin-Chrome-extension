@@ -199,6 +199,7 @@ class App extends Component {
     window.setTimeout(scrollMiddle, 1000);
 
     function scrollTop() {
+      console.log("scrolltop");
       window.scrollTo(0, 0);
     }
 
@@ -220,51 +221,53 @@ class App extends Component {
       )[0].innerText;
       console.log(location, "backl");
 
-      // let skills = document.getElementsByClassName(
-      //   "pv-skill-category-entity__name-text t-16 t-black t-bold"
-      // );
+      let skills = document.getElementsByClassName(
+        "pv-skill-category-entity__name-text t-16 t-black t-bold"
+      );
 
-      // console.log("rawskills", skills);
-      // let parsedSkills = [];
-      // for (let i = 0; i < skills.length; i++) {
-      //   console.log("infor", i, parsedSkills);
-      //   parsedSkills[i] = skills[i].innerText;
-      // }
-      // const top3skills = parsedSkills.toString();
-      // console.log(top3skills, "backskills");
+      console.log("rawskills", skills);
+      let parsedSkills = [];
+      for (let i = 0; i < skills.length; i++) {
+        console.log("infor", i, parsedSkills);
+        parsedSkills[i] = skills[i].innerText;
+      }
+      const top3skills = parsedSkills.toString();
+      console.log(top3skills, "backskills");
 
-      // let jobs = document
-      //   .getElementsByClassName(
-      //     "pv-profile-section experience-section ember-view"
-      //   )[0]
-      //   .getElementsByClassName("t-16 t-black t-bold");
-      // console.log(jobs, "jobs");
+      let jobs = document
+        .getElementsByClassName(
+          "pv-profile-section experience-section ember-view"
+        )[0]
+        .getElementsByClassName("t-16 t-black t-bold");
+      console.log(jobs, "jobs");
 
-      // let parsedJobs = [];
-      // for (let i = 0; i < jobs.length; i++) {
-      //   console.log("injobsfor", i, parsedJobs);
-      //   parsedJobs[i] = jobs[i].innerText;
-      // }
-      // const topJobs = parsedJobs.toString();
-      // console.log(topJobs, "topJobs");
+      let parsedJobs = [];
+      for (let i = 0; i < jobs.length; i++) {
+        console.log("injobsfor", i, parsedJobs);
+        parsedJobs[i] = jobs[i].innerText;
+      }
+      const topJobs = parsedJobs.toString();
+      console.log(topJobs, "topJobs");
 
-      // let education = document.getElementsByClassName("pv-entity__degree-info");
-      // console.log(education, "education");
+      let education = document.getElementsByClassName("pv-entity__degree-info");
+      console.log(education, "education");
 
-      // let parsedEducation = [];
-      // for (let i = 0; i < education.length; i++) {
-      //   console.log("inedufor", i, parsedEducation);
-      //   parsedEducation[i] = education[i].innerText;
-      // }
-      // const degrees = parsedEducation.toString();
-      // console.log(degrees, "degrees");
+      let parsedEducation = [];
+      for (let i = 0; i < education.length; i++) {
+        console.log("inedufor", i, parsedEducation);
+        parsedEducation[i] = education[i].innerText;
+      }
+      const degrees = parsedEducation.toString();
+      console.log(degrees, "degrees");
 
       store.dispatch({
         type: "LINK_INFO",
         name: name,
         jobTitle: jobTitle,
-        location: location
-        // skills: top3skills
+        location: location,
+        skills: top3skills,
+        jobs: topJobs,
+        degrees: degrees
       });
     }
 

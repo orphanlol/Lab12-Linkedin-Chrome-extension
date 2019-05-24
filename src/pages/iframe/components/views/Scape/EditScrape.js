@@ -66,6 +66,26 @@ class EditScrape extends Component {
           console.log(this.state.scrapedFields)
         );
       }
+      if (name == "Jobs") {
+        let scrapedFields = [...this.state.scrapedFields];
+
+        scrapedFields[idx].text = this.props.linkedinInfo.jobs;
+        scrapedFields[idx].field = name;
+
+        this.setState({ scrapedFields }, () =>
+          console.log(this.state.scrapedFields)
+        );
+      }
+      if (name == "Degrees") {
+        let scrapedFields = [...this.state.scrapedFields];
+
+        scrapedFields[idx].text = this.props.linkedinInfo.degrees;
+        scrapedFields[idx].field = name;
+
+        this.setState({ scrapedFields }, () =>
+          console.log(this.state.scrapedFields)
+        );
+      }
     });
   }
 
@@ -86,7 +106,7 @@ class EditScrape extends Component {
     doc.text("Resume:", 10, 10);
 
     for (let i = 0; i < this.state.scrapedFields.length; i++) {
-      let yaxis = 30 + 15 * i;
+      let yaxis = 30 + 30 * i;
       let line = doc.splitTextToSize(
         `${this.state.scrapedFields[i].field}: ${
           this.state.scrapedFields[i].text

@@ -12,7 +12,7 @@ class NewForm extends Component {
   state = {
     fields: [{ name: "" }],
     name: "",
-    fieldOptions: ["Job Title", "Name", "Location"]
+    fieldOptions: ["Job Title", "Name", "Location", "Skills", "Jobs", "Degrees"]
   };
 
   handleChange = e => {
