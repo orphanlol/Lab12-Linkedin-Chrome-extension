@@ -30,12 +30,15 @@ import {
   
   const initialState = {
     forms: null,
-    isLoading: true,
+    isLoading: false,
     isAdding: false,
     gettingForm: false,
     isDeleting: false,
     isUpdating: false,
     formToUpdate: null,
+    isADDUpdateForm: false,
+    fieldsToUpdate: null,
+
     error: ""
   };
   
@@ -61,18 +64,18 @@ import {
           forms: action.payload,
           error: action.ERROR
         };
-        case DELETE_FORM_START:
-      return {
+      case DELETE_FORM_START:
+        return {
         ...state,
         isDeleting: true,
         error: ""
-      };
-       case DELETE_FORM_SUCCESS:
-      return {
-        ...state,
-        isDeleting: false,
-        error: ""
-      };
+        };
+      case DELETE_FORM_SUCCESS:
+        return {
+          ...state,
+          isDeleting: false,
+          error: ""
+        };
     case DELETE_FORM_FAILURE:
       return {
         ...state,
@@ -101,13 +104,16 @@ import {
       return {
         ...state,
         gettingForm: true,
+        formToUpdate: null,
         error: ""
       };
 
     case GET_INDIVFORM_SUCCESS:
+      console.log('action payload',action.payload)
       return {
         ...state,
         gettingForm: false,
+        formToUpdate: action.payload,
         error: ""
       };
 
@@ -138,6 +144,7 @@ import {
     case GET_FIELDS_START:
       return {
         ...state,
+        fieldsToUpdate: null,
         gettingField: true,
         error: ""
       };
@@ -162,7 +169,6 @@ import {
         error: ""
       };
     case DELETE_FIELDS_SUCCESS:
-      console.log(action, "act");
       return {
         ...state,
         isDeleting: false,
@@ -177,17 +183,20 @@ import {
     case ADD_UPDATE_FORM_START:
       return {
         ...state,
+        isADDUpdateForm: true,
         error: ""
       };
     case ADD_UPDATE_FORM_SUCCESS:
       return {
         ...state,
+        isADDUpdateForm: false,
         formToUpdate: action.payload,
         error: ""
       };
     case ADD_UPDATE_FORM_FAILURE:
       return {
         ...state,
+        isADDUpdateForm: false,
         error: ""
       };
       default:

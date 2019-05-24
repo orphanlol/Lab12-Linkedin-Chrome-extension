@@ -15,9 +15,21 @@ class App extends Component {
   };
 
   injectOpen = () => {
-    const injects = document.getElementsByClassName(
+    const aTest = document.getElementsByClassName(
       "display-flex justify-flex-end align-items-center"
     );
+    const bTest = document.getElementsByClassName(
+      'pv-top-card-v2-section__actions'
+    )
+
+    let injects = null
+
+    if (aTest.length === 0) {
+      injects = bTest
+    } else if (bTest.length === 0) {
+      injects = aTest
+    }
+
     console.log(injects);
     const button = document.createElement("button");
     button.className = "openIframe";
@@ -58,9 +70,20 @@ class App extends Component {
   };
 
   injectClose = () => {
-    const injects = document.getElementsByClassName(
+    const aTest = document.getElementsByClassName(
       "display-flex justify-flex-end align-items-center"
     );
+    const bTest = document.getElementsByClassName(
+      'pv-top-card-v2-section__actions'
+    )
+
+    let injects = null
+
+    if (aTest.length === 0) {
+      injects = bTest
+    } else if (bTest.length === 0) {
+      injects = aTest
+    }
     console.log(injects);
     const button = document.createElement("button");
     button.className = "openIframe";
@@ -112,7 +135,7 @@ class App extends Component {
     const iframe = document.createElement("iframe");
     iframe.className = "iframe";
     iframe.src =
-      "chrome-extension://fajgjcfafoeojlbmhknnhonghielcgbp/pages/iframe.html";
+      "chrome-extension://ahmiihehkjgljakabbilhepgnolajkkj/pages/iframe.html";
     iframe.width = "452px";
     iframe.style.zIndex = "2147483647";
     iframe.style.top = "0px";
@@ -143,51 +166,6 @@ class App extends Component {
     });
   };
 
-  // getLinkiedElemet = () => {
-  //   function scrollMiddle() {
-  //     console.log("scroll middle");
-
-  //     window.scrollTo(0, document.body.scrollHeight / 2);
-  //   }
-  //   window.setTimeout(scrollMiddle, 1000);
-  // }
-
-  // injectIframe = () => {
-  //   const inject = document.querySelector("body");
-  //   const iframe = document.createElement("iframe");
-  //   iframe.className = "iframe";
-  //   iframe.src =
-  //     "chrome-extension://fajgjcfafoeojlbmhknnhonghielcgbp/pages/iframe.html";
-  //   iframe.width = "452px";
-  //   iframe.style.zIndex = "2147483647";
-  //   iframe.style.top = "0px";
-  //   iframe.style.opacity = "1";
-  //   iframe.style.position = "fixed";
-  //   iframe.style.height = "100%";
-  //   iframe.style.display = "block";
-  //   iframe.style.right = "-4px";
-  //   iframe.style.backgroundColor = "white";
-  //   inject.appendChild(iframe);
-  // };
-
-  // sendBackend = () => {
-  //   const firstName = localStorage.getItem("firstName");
-  //   const lastName = localStorage.getItem("lastName");
-  //   const id = localStorage.getItem("id");
-  //   const userId = localStorage.getItem("user_id");
-  //   const token = localStorage.getItem("token");
-  //   console.log("this.props", firstName);
-
-  //   store.dispatch({
-  //     type: "adias@LOGIN",
-  //     firstName: firstName,
-  //     lastName: lastName,
-  //     id: id,
-  //     user_id: userId,
-  //     token: token
-  //   });
-  // };
-
   getLinkiedElemet = () => {
     function scrollMiddle() {
       console.log("scroll middle");
@@ -206,19 +184,64 @@ class App extends Component {
 
     function getFields() {
       console.log("get fields");
-      const name = document.getElementsByClassName(
+      const Aname = document.getElementsByClassName(
         "inline t-24 t-black t-normal  "
       )[0].innerText;
+      console.log('Aname',Aname)
+
+      const Bname = document.getElementsByClassName(
+        'pv-top-card-section__name'
+      )[0].innerText
+      console.log('Bname',Bname)
+
+      let name = null
+
+      if (Aname === undefined) {
+        name = Bname
+      } else {
+        name = Bname
+      }
       console.log(name, "backn");
-      const jobTitle = document.getElementsByClassName(
+
+
+
+      const AjobTitle = document.getElementsByClassName(
         "mt1 inline-block t-18 t-black t-normal "
-      )[0].innerText;
+      )
+
+      console.log('Ajob',AjobTitle)
+
+      const BjobTitle = document.getElementsByClassName(
+        "pv-top-card-section__headline"
+      )
+      console.log('bjob',BjobTitle)
+
+      let jobTitle = null
+
+      if (AjobTitle.length === 0) {
+        jobTitle = BjobTitle[0].innerText
+      } else {
+        jobTitle = AjobTitle[0].innerText
+      }
       console.log(jobTitle, "backj");
 
-      const location = document.getElementsByClassName(
+      const Alocation = document.getElementsByClassName(
         "t-16 t-black t-normal inline-block"
-      )[0].innerText;
-      console.log(location, "backl");
+      )
+
+      const Blocation = document.getElementsByClassName(
+        "pv-top-card-section__location"
+      )
+      
+      let location = null
+
+      if (Alocation.length === 0) {
+        location = Blocation[0].innerText
+      } else {
+        location = Alocation[0].innerText
+      }
+
+      console.log(location, "location");
 
       // let skills = document.getElementsByClassName(
       //   "pv-skill-category-entity__name-text t-16 t-black t-bold"
