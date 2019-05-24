@@ -5,10 +5,14 @@ import { Store } from "react-chrome-redux";
 import "./Forms.css";
 import NavBar from "../NavBar/NavBar";
 import Form from "./Form";
+import axios from "axios";
 
 const store = new Store({
   portName: "COUNTING"
 });
+
+const deployedDb = "https://linkedinextension.herokuapp.com";
+const localDb = "http://localhost:9001";
 
 class Forms extends Component {
   state = {
@@ -20,8 +24,31 @@ class Forms extends Component {
     console.log("i am here");
   }
 
-  newForm = () => {
-    this.props.history.push("/new-form");
+  newForm = async () => {
+    await axios
+      .get(`${deployedDb}/api/users/upgrade/${localStorage.getItem("id")}`, {
+        headers: {
+          Authorization: window.localStorage.token
+        }
+      })
+      .then(res => {
+        if (res.data.pro == false && res.data.form_count >= 3) {
+          if (
+            window.confirm(
+              "You have to have a pro account to make more than 3 forms! \n Please go to main site to if you would like to upgrade."
+            )
+          ) {
+            this.props.history.push("/forms");
+          } else {
+            this.props.history.push("/forms");
+          }
+        } else {
+          this.props.history.push("/new-form");
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render() {

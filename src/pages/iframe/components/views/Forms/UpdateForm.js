@@ -15,7 +15,7 @@ class UpdateIndivForm extends Component {
     fieldOptions: ["Job Title", "Name", "Location", "Skills"]
   };
 
-  componentDidMount() {
+    componentDidMount() {
     let url_string = window.location.href; //window.location.href
     let url = new URL(url_string);
     let id = url.searchParams.get("id");
@@ -25,7 +25,7 @@ class UpdateIndivForm extends Component {
     this.props.getIndivForm(id);
     console.log("after set state", this.state.form);
     this.props.getField(this.props.formToUpdate.id);
-    console.log('after thisState',this.state.fields)
+    console.log('after thisState',this.state)
   }
 
   handleChangeForm = e => {

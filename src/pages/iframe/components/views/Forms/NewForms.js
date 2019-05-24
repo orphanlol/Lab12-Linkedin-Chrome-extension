@@ -55,14 +55,13 @@ class NewForm extends Component {
     let { name, fields } = this.state;
     return (
       <div className="PageWrapperNF">
-        <div className="Header">
-          <div className="CancelNF" onClick={this.cancel}>
-            {"< Cancel"}
-          </div>
-        </div>
-
         <div className="FormWrapperNF">
-          <form>
+          <div className="Header">
+            <div className="CancelNF" onClick={this.cancel}>
+              {"< Back to forms"}
+            </div>
+          </div>
+          <form className="formBoxNF">
             <input
               placeholder="Name your form..."
               type="text"
@@ -74,7 +73,7 @@ class NewForm extends Component {
             {fields.map((val, idx) => {
               let nameId = `name-${idx}`;
               return (
-                <div key={idx}>
+                <div className="FieldBoxNF" key={idx}>
                   <label htmlFor={nameId}>{`Field #${idx + 1}`}</label>
                   <div className="FieldSelectDeleteNF">
                     <div className="SelectFieldNF">

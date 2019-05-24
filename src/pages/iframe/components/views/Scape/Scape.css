@@ -4,6 +4,19 @@
   margin-right: 10px;
 }
 
+.centerBox {
+  margin-left: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 370px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
 .bold {
   font-weight: bold;
   font-size: 20px;
@@ -11,4 +24,22 @@
 
 .form {
   /* border: 1px solid red; */
+}
+
+.scrapeBtn {
+  margin-top: 20px;
+  height: 30px;
+  width: 100px;
+  border: 1px solid #0284b1;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #0284b1;
+  color: white;
+  font-size: 14px;
+  background-image: linear-gradient(-180deg, #0387fa, #0284b1, 90%);
+}
+
+.scrapeBtn:hover {
+  border: 1px solid #02659e;
+  background-image: linear-gradient(-180deg, #0284b1, #02659e 90%);
 }
