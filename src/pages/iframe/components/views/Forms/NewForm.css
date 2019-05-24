@@ -7,7 +7,6 @@
 .Header {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
 }
 
 .Save {
@@ -34,12 +33,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 1000px;
 }
 
 .CancelNF {
+  font-size: 14px;
+  margin-bottom: 10px;
   max-width: 1100px;
   width: 100%;
-  margin: 20px 0;
   text-align: left;
   text-decoration: none;
 }
@@ -48,15 +49,16 @@
 }
 
 .FormWrapperNF {
-  max-width: 1060px;
-  width: 100%;
-  height: 500px;
-  margin: 0 40px;
-  background-color: white;
+  max-width: 410px;
+  width: 370;
+  margin-top: 15px;
+  /* margin: 0 40px; */
   display: flex;
   flex-direction: column;
-  padding-left: 50px;
-  padding-right: 50px;
+  justify-content: center;
+  align-items: center;
+  /* padding-left: 50px;
+  padding-right: 50px; */
 }
 
 .FormNF {
@@ -79,6 +81,7 @@
 
 .FieldSelectDeleteNF {
   display: flex;
+  justify-content: space-between;
   margin-top: 5px;
   height: 30px;
 }
@@ -91,36 +94,40 @@
 }
 
 .DeleteFieldNF {
+  color: #b50707;
+  border-color: #b50707;
+  border-radius: 5px;
+  font-size: 13px;
+  cursor: pointer;
   margin-left: 20px;
   border-radius: 5px;
-  cursor: pointer;
   height: 20px;
 }
+
 .DeleteFieldNF:hover {
-  color: red;
-  border-color: red;
+  background-color: #b50707;
+  color: white;
 }
 
 .AddFieldBtnNF {
   height: 30px;
   width: 100px;
-  margin: 20px 0;
   border: 1px solid #0284b1;
   margin-top: 20px;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #0284b1;
-  color: white;
+  color: #0284b1;
   font-size: 14px;
   background-image: linear-gradient(-180deg, #0387fa, #0284b1, 90%);
 }
 .AddFieldBtnNF:hover {
   border: 1px solid #02659e;
   background-image: linear-gradient(-180deg, #0284b1, #02659e 90%);
+  color: white;
 }
 
 .SubmitBtnNF {
-  margin-left: 10px;
+  margin-left: 150px;
   height: 30px;
   width: 100px;
   border: 1px solid #0284b1;
@@ -138,8 +145,35 @@
 }
 
 .NameNF {
+  width: 100%;
   margin-bottom: 15px;
   color: #0284b1;
   height: 30px;
   font-size: 24px;
+}
+
+.formBoxNF {
+  width: 370px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.formBoxNF:hover {
+  cursor: pointer;
+  /* box-shadow: 0 0 2px 2px #0284b1;
+  transition: all 0.3s; */
+}
+
+select {
+  width: 150px;
+}
+
+.FieldBoxNF {
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+  background-color: #f5f5f5;
 }
