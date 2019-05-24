@@ -1,4 +1,4 @@
-.PageWrapperUF {
+/* .PageWrapperUF {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,4 +99,191 @@
 .SubmitBtnUF:hover {
   border: 1px solid #02659e;
   background-image: linear-gradient(-180deg, #0284b1, #02659e 90%);
+} */
+
+.Body {
+  width: 410px;
+  height: 580px;
+  padding: 10px;
+}
+
+.Header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Save {
+  width: 50px;
+}
+
+.Title {
+  text-align: left;
+  padding-bottom: 10px;
+}
+
+.FormInput {
+  text-align: left;
+  padding-bottom: 10px;
+}
+
+.SubTitle {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 10px;
+}
+
+.PageWrapperEF {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 1000px;
+}
+
+.CancelEF {
+  font-size: 14px;
+  margin-bottom: 10px;
+  max-width: 1100px;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+}
+.CancelEF:hover {
+  text-decoration: underline;
+}
+
+.FormWrapperEF {
+  max-width: 410px;
+  width: 370;
+  margin-top: 15px;
+  /* margin: 0 40px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* padding-left: 50px;
+  padding-right: 50px; */
+}
+
+.FormEF {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+}
+
+.FormEF .inputEF {
+  color: #0284b1;
+  padding-left: 10px;
+  width: 300px;
+  height: 50px;
+  font-size: 24px;
+}
+
+.FieldEF {
+  margin-top: 20px;
+}
+
+.FieldSelectDeleteEF {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  height: 30px;
+}
+
+.SelectFieldEF {
+  width: 150px;
+  height: 25px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.DeleteFieldEF {
+  color: #b50707;
+  border-color: #b50707;
+  border-radius: 5px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-left: 20px;
+  border-radius: 5px;
+  height: 20px;
+}
+
+.DeleteFieldEF:hover {
+  background-color: #b50707;
+  color: white;
+}
+
+.AddFieldBtnEF {
+  height: 30px;
+  width: 100px;
+  border: 1px solid #0284b1;
+  margin-top: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #0284b1;
+  font-size: 14px;
+  background-image: linear-gradient(-180deg, #0387fa, #0284b1, 90%);
+}
+.AddFieldBtnEF:hover {
+  border: 1px solid #02659e;
+  background-image: linear-gradient(-180deg, #0284b1, #02659e 90%);
+  color: white;
+}
+
+.SubmitBtnEF {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 40px;
+  width: 100px;
+  border: 1px solid #0284b1;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #0284b1;
+  color: white;
+  font-size: 14px;
+  background-image: linear-gradient(-180deg, #0387fa, #0284b1, 90%);
+}
+
+.SubmitBtnEF:hover {
+  border: 1px solid #02659e;
+  background-image: linear-gradient(-180deg, #0284b1, #02659e 90%);
+}
+
+.NameEF {
+  width: 100%;
+  margin-bottom: 15px;
+  color: #0284b1;
+  height: 30px;
+  font-size: 24px;
+}
+
+.formBoxEF {
+  width: 370px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.formBoxEF:hover {
+  cursor: pointer;
+  /* box-shadow: 0 0 2px 2px #0284b1;
+  transition: all 0.3s; */
+}
+
+select {
+  width: 150px;
+}
+
+.FieldBoxEF {
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #c9c9c9;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.submitDiv {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
