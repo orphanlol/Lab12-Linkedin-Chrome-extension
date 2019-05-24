@@ -55,22 +55,13 @@ class Scrape extends Component {
   }
 
   getSelectedFormFields = async () => {
-    console.log("formID", this.props.forms);
     for (let i = 0; i < this.props.forms.length; i++) {
       if (this.props.forms[i].name === this.state.selectedFormName) {
         await this.setState({ selectedFormId: this.props.forms[i].form_id });
       }
     }
-    console.log("after set id", this.state);
     await this.props.getField(this.state.selectedFormId);
     this.setState({ selectedFormFields: this.props.getFields });
-    console.log("right before edit", this.state);
-    // this.setState({
-    //   formOptions: [],
-    //   selectedFormName: "",
-    //   selectedFormId: "",
-    //   selectedFormFields: []
-    // });
     this.props.history.push("/edit-scrape");
   };
 
