@@ -25,12 +25,13 @@ class Forms extends Component {
   };
 
   render() {
+    console.log(this.props.forms)
     let form = <div>loading</div>;
 
-    if (
+    if ((
       this.props.forms.forms === null ||
       this.props.forms.forms.length === (0 || undefined)
-    ) {
+    ) && !this.props.forms.isLoading ) {
       form = (
         <div className="ContainedForms">
           <NavBar />
@@ -40,7 +41,7 @@ class Forms extends Component {
           <button onClick={this.newForm}>Create New</button>
         </div>
       );
-    } else if (this.props.forms.forms !== null) {
+    } else if ((this.props.forms.forms !== null) && !this.props.forms.isLoading) {
       form = (
         <div>
           <NavBar />

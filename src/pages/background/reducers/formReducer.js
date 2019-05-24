@@ -30,13 +30,15 @@ import {
   
   const initialState = {
     forms: null,
-    isLoading: true,
-    isAdding: true,
-    gettingForm: true,
-    isDeleting: true,
-    isUpdating: true,
-    formToUpdate: true,
-    isADDUpdateForm: true,
+    isLoading: false,
+    isAdding: false,
+    gettingForm: false,
+    isDeleting: false,
+    isUpdating: false,
+    formToUpdate: null,
+    isADDUpdateForm: false,
+    fieldsToUpdate: null,
+
     error: ""
   };
   
@@ -102,13 +104,16 @@ import {
       return {
         ...state,
         gettingForm: true,
+        formToUpdate: null,
         error: ""
       };
 
     case GET_INDIVFORM_SUCCESS:
+      console.log('action payload',action.payload)
       return {
         ...state,
         gettingForm: false,
+        formToUpdate: action.payload,
         error: ""
       };
 
@@ -139,6 +144,7 @@ import {
     case GET_FIELDS_START:
       return {
         ...state,
+        fieldsToUpdate: null,
         gettingField: true,
         error: ""
       };

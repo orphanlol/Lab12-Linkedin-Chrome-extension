@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Store } from "webext-redux";
 import "./UpdateForm.css";
+import Spinner from '../../Spinner/Spinner'
 
 const store = new Store({
   portName: "COUNTING"
@@ -9,23 +10,22 @@ const store = new Store({
 
 class UpdateIndivForm extends Component {
   state = {
-    form: [],
-    fields: [],
+    form: this.props.formToUpdate,
+    fields: this.props.fieldsToUpdate,
     fieldOptions: ["Job Title", "Name", "Location", "Skills"]
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     let url_string = window.location.href; //window.location.href
     let url = new URL(url_string);
     let id = url.searchParams.get("id");
     console.log("url", url_string);
     console.log("url2", url);
     console.log("urlid", id);
-    await this.props.getIndivForm(id);
-    await this.setState({ form: this.props.formToUpdate });
+    this.props.getIndivForm(id);
     console.log("after set state", this.state.form);
-    await this.props.getField(this.props.formToUpdate.id);
-    await this.setState({ fields: this.props.fieldsToUpdate });
+    this.props.getField(this.props.formToUpdate.id);
+    console.log('after thisState',this.state.fields)
   }
 
   handleChangeForm = e => {
@@ -51,13 +51,29 @@ class UpdateIndivForm extends Component {
   updateForm = async (e, id) => {
     e.preventDefault();
     await this.props.updateForm(this.state.form, this.state.fields);
+    this.setState({
+      form: [],
+    })
+    this.setState({field: []})
     this.props.history.push("/forms");
   };
 
   render() {
-    console.log(this.state.form);
-    return (
-      <div>
+    let update = (
+        <div>
+          <Spinner />
+        </div>
+    )
+    console.log(this.state)
+    if (this.props.forms.gettingField === true && this.props.forms.gettingField === true && this.props.forms.gettingForm === true && this.state.fields.length === 0 && this.state.form.name === undefined) {
+      update = (
+        <div>
+          <Spinner />
+        </div>
+      )
+    } else if (this.props.forms.gettingField === false && this.props.forms.gettingField === false && this.props.forms.gettingForm === false && this.state.fields.length !== 0 && this.state.form.name !== undefined) {
+      update = (
+        <div>
         <form>
           <input
             type="text"
@@ -118,6 +134,12 @@ class UpdateIndivForm extends Component {
           </div>
         </form>
       </div>
+      )
+    }
+    return (
+      <div>
+        {update}
+      </div>
     );
   }
 }
@@ -128,7 +150,8 @@ const mapStateToProps = state => {
     // updateForm: state.formReducer.updateForm,
     // isUpdating: state.formReducer.isUpdating,
     formToUpdate: state.formReducer.formToUpdate,
-    fieldsToUpdate: state.formReducer.fieldsToUpdate
+    fieldsToUpdate: state.formReducer.fieldsToUpdate,
+    forms: state.formReducer
   };
 };
 

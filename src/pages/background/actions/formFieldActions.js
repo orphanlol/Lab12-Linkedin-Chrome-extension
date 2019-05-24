@@ -9,7 +9,7 @@ export const GET_FIELDS_SUCCESS = "GET_FIELDS_SUCCESS";
 export const GET_FIELDS_FAILURE = "GET_FIELDS_FAILURE";
 
 export const getField = id => dispatch => {
-    console.log('feildid',id)
+  console.log('feildid',id)
   dispatch({ type: GET_FIELDS_START });
   axios
     .get(`https://linkedinextension.herokuapp.com/api/fields/field/${id.formId}`, {
