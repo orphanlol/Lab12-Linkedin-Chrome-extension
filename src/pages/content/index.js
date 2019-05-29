@@ -21,7 +21,7 @@ class App extends Component {
     console.log(injects);
     const button = document.createElement("button");
     button.className = "openIframe";
-    button.innerText = "Open The extension";
+    button.innerText = "Open Extension";
     button.style.transitionTimingFunction = "cubic-bezier(.4, 0, .2, 1)";
     button.style.transitionDuration = "167ms";
     button.style.alignItems = "center";
@@ -33,7 +33,7 @@ class App extends Component {
     button.style.fontWeight = "600";
     button.style.display = "inline-flex";
     button.style.justifyContent = "center";
-    button.style.maxWidth = "480px";
+    button.style.maxWidth = "160px";
     button.style.overflow = "hidden";
     button.style.outlineWidth = "2px";
     button.style.transitionProperty = "background-color, box-shadow, color";
@@ -41,9 +41,12 @@ class App extends Component {
     button.style.backgroundColor = "#0073b1";
     button.style.color = "white";
     button.style.fontSize = "1.6rem";
-    button.style.minHeight = "40px";
+    button.style.minHeight = "32px";
     button.style.lineHeight = "20px";
     button.style.marginTop = "8px";
+    button.style.marginLeft = "8px";
+    button.style.marginBottom = "8px";
+    button.style.padding = "6px 12px";
 
     injects[0].appendChild(button);
 
@@ -52,7 +55,7 @@ class App extends Component {
       this.setState({
         iframeOpen: true
       });
-      console.log("fuck", injects);
+      console.log("inject open", injects);
       injects[0].removeChild(button);
     });
   };
@@ -64,7 +67,7 @@ class App extends Component {
     console.log(injects);
     const button = document.createElement("button");
     button.className = "openIframe";
-    button.innerText = "close The extension";
+    button.innerText = "Close Extension";
     button.style.transitionTimingFunction = "cubic-bezier(.4, 0, .2, 1)";
     button.style.transitionDuration = "167ms";
     button.style.alignItems = "center";
@@ -76,7 +79,7 @@ class App extends Component {
     button.style.fontWeight = "600";
     button.style.display = "inline-flex";
     button.style.justifyContent = "center";
-    button.style.maxWidth = "480px";
+    button.style.maxWidth = "160px";
     button.style.overflow = "hidden";
     button.style.outlineWidth = "2px";
     button.style.transitionProperty = "background-color, box-shadow, color";
@@ -84,9 +87,12 @@ class App extends Component {
     button.style.backgroundColor = "#0073b1";
     button.style.color = "white";
     button.style.fontSize = "1.6rem";
-    button.style.minHeight = "40px";
+    button.style.minHeight = "32px";
     button.style.lineHeight = "20px";
     button.style.marginTop = "8px";
+    button.style.marginLeft = "8px";
+    button.style.marginBottom = "8px";
+    button.style.padding = "6px 12px";
 
     injects[0].appendChild(button);
 
