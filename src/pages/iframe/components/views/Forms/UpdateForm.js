@@ -42,6 +42,10 @@ class UpdateIndivForm extends Component {
     }
   }
 
+  cancel = () => {
+    this.props.history.push("/");
+  };
+
   handleChangeForm = e => {
     this.setState({
       form: {
@@ -49,10 +53,6 @@ class UpdateIndivForm extends Component {
         [e.target.name]: e.target.value
       }
     });
-  };
-
-  cancel = () => {
-    this.props.history.push("/");
   };
 
   handleChangeField = e => {
@@ -69,6 +69,8 @@ class UpdateIndivForm extends Component {
   updateForm = async (e, id) => {
     e.preventDefault();
     await this.props.updateForm(this.state.form, this.state.fields);
+    this.props.initialForm();
+    this.props.initialField();
     this.props.history.push("/forms");
   };
 
@@ -186,8 +188,8 @@ const mapStateToProps = state => {
     // getIndivForm: state.formReducer.getIndivForm,
     // updateForm: state.formReducer.updateForm,
     // isUpdating: state.formReducer.isUpdating,
-    formToUpdate: state.formReducer.formToUpdate,
     fieldsToUpdate: state.formReducer.fieldsToUpdate,
+    formToUpdate: state.formReducer.formToUpdate,
     forms: state.formReducer
   };
 };

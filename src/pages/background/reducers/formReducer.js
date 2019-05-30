@@ -109,6 +109,7 @@ const formReducer = (state = initialState, action) => {
       };
 
     case GET_INDIVFORM_SUCCESS:
+      console.log("action payload", action.payload);
       return {
         ...state,
         gettingForm: false,
@@ -170,7 +171,6 @@ const formReducer = (state = initialState, action) => {
         error: ""
       };
     case DELETE_FIELDS_SUCCESS:
-      console.log(action, "act");
       return {
         ...state,
         isDeleting: false,
@@ -191,6 +191,7 @@ const formReducer = (state = initialState, action) => {
     case ADD_UPDATE_FORM_SUCCESS:
       return {
         ...state,
+        isADDUpdateForm: false,
         formToUpdate: action.payload,
         isADDUpdateForm: false,
         error: ""

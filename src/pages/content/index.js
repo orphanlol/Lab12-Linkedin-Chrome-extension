@@ -15,9 +15,21 @@ class App extends Component {
   };
 
   injectOpen = () => {
-    const injects = document.getElementsByClassName(
+    const aTest = document.getElementsByClassName(
       "display-flex justify-flex-end align-items-center"
     );
+    const bTest = document.getElementsByClassName(
+      "pv-top-card-v2-section__actions"
+    );
+
+    let injects = null;
+
+    if (aTest.length === 0) {
+      injects = bTest;
+    } else if (bTest.length === 0) {
+      injects = aTest;
+    }
+
     console.log(injects);
 
     let mouseOn = function() {
@@ -72,9 +84,20 @@ class App extends Component {
   };
 
   injectClose = () => {
-    const injects = document.getElementsByClassName(
+    const aTest = document.getElementsByClassName(
       "display-flex justify-flex-end align-items-center"
     );
+    const bTest = document.getElementsByClassName(
+      "pv-top-card-v2-section__actions"
+    );
+
+    let injects = null;
+
+    if (aTest.length === 0) {
+      injects = bTest;
+    } else if (bTest.length === 0) {
+      injects = aTest;
+    }
     console.log(injects);
 
     let mouseOn = function() {
@@ -177,51 +200,6 @@ class App extends Component {
       token: token
     });
   };
-
-  // getLinkiedElemet = () => {
-  //   function scrollMiddle() {
-  //     console.log("scroll middle");
-
-  //     window.scrollTo(0, document.body.scrollHeight / 2);
-  //   }
-  //   window.setTimeout(scrollMiddle, 1000);
-  // }
-
-  // injectIframe = () => {
-  //   const inject = document.querySelector("body");
-  //   const iframe = document.createElement("iframe");
-  //   iframe.className = "iframe";
-  //   iframe.src =
-  //     "chrome-extension://fajgjcfafoeojlbmhknnhonghielcgbp/pages/iframe.html";
-  //   iframe.width = "452px";
-  //   iframe.style.zIndex = "2147483647";
-  //   iframe.style.top = "0px";
-  //   iframe.style.opacity = "1";
-  //   iframe.style.position = "fixed";
-  //   iframe.style.height = "100%";
-  //   iframe.style.display = "block";
-  //   iframe.style.right = "-4px";
-  //   iframe.style.backgroundColor = "white";
-  //   inject.appendChild(iframe);
-  // };
-
-  // sendBackend = () => {
-  //   const firstName = localStorage.getItem("firstName");
-  //   const lastName = localStorage.getItem("lastName");
-  //   const id = localStorage.getItem("id");
-  //   const userId = localStorage.getItem("user_id");
-  //   const token = localStorage.getItem("token");
-  //   console.log("this.props", firstName);
-
-  //   store.dispatch({
-  //     type: "adias@LOGIN",
-  //     firstName: firstName,
-  //     lastName: lastName,
-  //     id: id,
-  //     user_id: userId,
-  //     token: token
-  //   });
-  // };
 
   getLinkiedElemet = () => {
     function scrollMiddle() {
