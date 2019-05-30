@@ -1,11 +1,10 @@
 .Scrape {
   width: 410px;
   height: 580px;
-  margin-right: 10px;
 }
 
 .centerBox {
-  margin-left: 20px;
+  margin-left: 12px;
   margin-top: 20px;
   display: flex;
   flex-direction: column;

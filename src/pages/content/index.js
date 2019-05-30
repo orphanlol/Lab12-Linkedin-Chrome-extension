@@ -144,12 +144,19 @@ class App extends Component {
     iframe.width = "452px";
     iframe.style.zIndex = "2147483647";
     iframe.style.top = "0px";
+    iframe.style.marginTop = "1%";
     iframe.style.opacity = "1";
     iframe.style.position = "fixed";
-    iframe.style.height = "100%";
+    iframe.style.height = "95%";
     iframe.style.display = "block";
-    iframe.style.right = "-4px";
-    iframe.style.backgroundColor = "white";
+    iframe.style.right = "15px";
+    iframe.style.backgroundColor = "#faf7fc";
+    iframe.style.paddingTop = "5px";
+    iframe.style.paddingLeft = "12px";
+    iframe.style.borderRadius = "5px";
+    iframe.style.boxShadow = "8px 10px 5px 0px rgba(0,0,0,0.4)";
+    iframe.style.webkitBoxShadow = "8px 10px 5px 0px rgba(0,0,0,0.4)";
+
     inject.appendChild(iframe);
   };
 
