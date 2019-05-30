@@ -184,7 +184,6 @@ export const addFormToUpdate = form => dispatch => {
   dispatch({ type: ADD_UPDATE_FORM_SUCCESS, payload: form.form });
 };
 
-export const initialState = dispatch => {
+export const initialForm = none => dispatch => {
   dispatch({type: GET_INDIVFORM_START})
-  dispatch({})
 }

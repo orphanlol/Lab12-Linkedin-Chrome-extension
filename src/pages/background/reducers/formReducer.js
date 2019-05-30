@@ -29,16 +29,16 @@ import {
 } from '../actions/formFieldActions'
   
   const initialState = {
-    forms: null,
+    forms: [],
     isLoading: false,
     isAdding: false,
     gettingForm: false,
     isDeleting: false,
     isUpdating: false,
-    formToUpdate: null,
+    formToUpdate: [],
     isADDUpdateForm: false,
-    fieldsToUpdate: null,
-
+    fieldsToUpdate: [],
+    gettingField: false,
     error: ""
   };
   
@@ -104,7 +104,7 @@ import {
       return {
         ...state,
         gettingForm: true,
-        formToUpdate: null,
+        formToUpdate: [],
         error: ""
       };
 
@@ -121,6 +121,7 @@ import {
       return {
         ...state,
         gettingForm: false,
+        formToUpdate: [],
         error: action.payload
       };
     case UPDATE_FORM_START:
@@ -144,7 +145,7 @@ import {
     case GET_FIELDS_START:
       return {
         ...state,
-        fieldsToUpdate: null,
+        fieldsToUpdate: [],
         gettingField: true,
         error: ""
       };
@@ -159,6 +160,7 @@ import {
     case GET_FIELDS_FAILURE:
       return {
         ...state,
+        fieldsToUpdate: [],
         gettingField: false,
         error: action.payload
       };
