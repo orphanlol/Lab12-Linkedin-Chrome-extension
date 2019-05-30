@@ -19,6 +19,15 @@ class App extends Component {
       "display-flex justify-flex-end align-items-center"
     );
     console.log(injects);
+
+    let mouseOn = function() {
+      this.style.background = "#b38b42";
+    };
+
+    let mouseOff = function() {
+      this.style.background = "#cc9022";
+    };
+
     const button = document.createElement("button");
     button.className = "openIframe";
     button.innerText = "Open Extension";
@@ -38,7 +47,7 @@ class App extends Component {
     button.style.outlineWidth = "2px";
     button.style.transitionProperty = "background-color, box-shadow, color";
     button.style.verticalAlign = "middle";
-    button.style.backgroundColor = "#0073b1";
+    button.style.backgroundColor = "#cc9022";
     button.style.color = "white";
     button.style.fontSize = "1.6rem";
     button.style.minHeight = "32px";
@@ -47,6 +56,8 @@ class App extends Component {
     button.style.marginLeft = "8px";
     button.style.marginBottom = "8px";
     button.style.padding = "6px 12px";
+    button.onmouseenter = mouseOn;
+    button.onmouseleave = mouseOff;
 
     injects[0].appendChild(button);
 
@@ -65,6 +76,15 @@ class App extends Component {
       "display-flex justify-flex-end align-items-center"
     );
     console.log(injects);
+
+    let mouseOn = function() {
+      this.style.background = "#b38b42";
+    };
+
+    let mouseOff = function() {
+      this.style.background = "#cc9022";
+    };
+
     const button = document.createElement("button");
     button.className = "openIframe";
     button.innerText = "Close Extension";
@@ -84,7 +104,7 @@ class App extends Component {
     button.style.outlineWidth = "2px";
     button.style.transitionProperty = "background-color, box-shadow, color";
     button.style.verticalAlign = "middle";
-    button.style.backgroundColor = "#0073b1";
+    button.style.backgroundColor = "#cc9022";
     button.style.color = "white";
     button.style.fontSize = "1.6rem";
     button.style.minHeight = "32px";
@@ -93,6 +113,8 @@ class App extends Component {
     button.style.marginLeft = "8px";
     button.style.marginBottom = "8px";
     button.style.padding = "6px 12px";
+    button.onmouseenter = mouseOn;
+    button.onmouseleave = mouseOff;
 
     injects[0].appendChild(button);
 
