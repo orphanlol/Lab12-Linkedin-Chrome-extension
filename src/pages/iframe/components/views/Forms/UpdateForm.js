@@ -3,17 +3,15 @@ import { connect } from "react-redux";
 import { Store } from "webext-redux";
 import "./UpdateForm.css";
 import Spinner from '../../Spinner/Spinner'
-import { initialState } from "../../../../background/actions/formActions";
 
 const store = new Store({
   portName: "COUNTING"
 });
 
 class UpdateIndivForm extends Component {
-  
   state = {
-    form: [],
-    fields: [],
+    form: this.props.formToUpdate,
+    fields: this.props.fieldsToUpdate,
     fieldOptions: ["Job Title", "Name", "Location", "Skills"]
   };
 
@@ -25,22 +23,10 @@ class UpdateIndivForm extends Component {
     console.log("url2", url);
     console.log("urlid", id);
     this.props.getIndivForm(id);
-    
-    console.log('form to update',this.props.formToUpdate)
     console.log("after set state", this.state.form);
-    this.props.getField(id);
-
+    this.props.getField(this.props.formToUpdate.id);
     console.log('after thisState',this.state)
   }
-
-  componentDidUpdate(prevProps) {
-    if(this.props.fieldsToUpdate !== prevProps.fieldsToUpdate) {
-      
-      console.log('it fire')
-      this.setState({form: this.props.formToUpdate, fields:this.props.fieldsToUpdate})
-    }
-  }
-
 
   handleChangeForm = e => {
     this.setState({
@@ -65,28 +51,27 @@ class UpdateIndivForm extends Component {
   updateForm = async (e, id) => {
     e.preventDefault();
     await this.props.updateForm(this.state.form, this.state.fields);
-    this.props.initialForm()
-    this.props.initialField()
+    this.setState({
+      form: [],
+    })
+    this.setState({field: []})
     this.props.history.push("/forms");
   };
 
   render() {
-    console.log('this.props', this.props.forms)
     let update = (
         <div>
           <Spinner />
         </div>
     )
     console.log(this.state)
-
-    if (this.props.forms.gettingForm === true && this.props.forms.gettingField === true && (this.state.form.length === 0) && (this.state.fields.length === 0)) {
+    if (this.props.forms.gettingField === true && this.props.forms.gettingField === true && this.props.forms.gettingForm === true && this.state.fields.length === 0 && this.state.form.name === undefined) {
       update = (
         <div>
           <Spinner />
         </div>
       )
-    } 
-    else if ((this.props.forms.gettingForm === false) && (this.props.forms.gettingField === false) && (this.state.form.length !== 0) && (this.state.fields.length !== 0)) {
+    } else if (this.props.forms.gettingField === false && this.props.forms.gettingField === false && this.props.forms.gettingForm === false && this.state.fields.length !== 0 && this.state.form.name !== undefined) {
       update = (
         <div>
         <form>
@@ -96,8 +81,7 @@ class UpdateIndivForm extends Component {
             value={this.state.form.name}
             onChange={this.handleChangeForm}
           />
-          {this.props.fieldsToUpdate.map((val, idx) => {
-            console.log('idx', idx)
+          {this.state.fields.map((val, idx) => {
             let nameId = `name-${idx}`;
             return (
               <div key={idx}>
@@ -165,8 +149,8 @@ const mapStateToProps = state => {
     // getIndivForm: state.formReducer.getIndivForm,
     // updateForm: state.formReducer.updateForm,
     // isUpdating: state.formReducer.isUpdating,
-    fieldsToUpdate: state.formReducer.fieldsToUpdate,
     formToUpdate: state.formReducer.formToUpdate,
+    fieldsToUpdate: state.formReducer.fieldsToUpdate,
     forms: state.formReducer
   };
 };
@@ -180,10 +164,7 @@ const mapDispatchToProps = dispatch => {
     getField: formId =>
       store.dispatch({ type: "alias@GET_FIELD", formId: formId }),
     deleteField: target =>
-      store.dispatch({ type: "alias@DELETE_FIELD", target: target }),
-    initialForm: () => store.dispatch({type: 'alias@INITIAL_FORM', none: 'none'}),
-    initialField: () => store.dispatch({type: 'alias@INITIAL_FIELD', none: 'none'})
-
+      store.dispatch({ type: "alias@DELETE_FIELD", target: target })
   };
 };
 
