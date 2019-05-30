@@ -35,7 +35,7 @@ class Forms extends Component {
         if (res.data.pro == false && res.data.form_count >= 1) {
           if (
             window.confirm(
-              "You have to have a pro account to make more than 1 forms! \n Please go to main site to if you would like to upgrade."
+              "You have to have a pro account to make more than 1 template! \n Please go to main site to if you would like to upgrade."
             )
           ) {
             this.props.history.push("/forms");
@@ -61,9 +61,9 @@ class Forms extends Component {
       form = (
         <div className="ContainedForms">
           <NavBar />
-          <div>Forms</div>
+          <div>Templates</div>
           <div className="Title" />
-          <div>No Form was found please create a Form</div>
+          <div>No templates were found please create a new template</div>
           <button onClick={this.newForm}>Create New</button>
         </div>
       );
@@ -72,14 +72,16 @@ class Forms extends Component {
         <div>
           <NavBar />
           <div className="FormsWrapper">
-            <h1>Create forms to customize the fields you scrape</h1>
+            <h1>
+              Create scraping templates to customize the fields you scrape
+            </h1>
             {this.props.forms.forms.map(form => (
               <div className="IndividualForm">
                 <Form form={form} history={this.props.history} />
               </div>
             ))}
             <button className="CreateFormBtn" onClick={this.newForm}>
-              Create New Form
+              Create New Template
             </button>
           </div>
         </div>

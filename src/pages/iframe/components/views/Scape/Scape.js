@@ -79,13 +79,13 @@ class Scrape extends Component {
           <div className="bold">Scrape Profile</div>
 
           <div className="dropDown">
-            <p>Form: </p>
+            <p>Template: </p>
             <select
               value={this.state.selectedFormName}
               onChange={this.handleChangeField}
             >
               <option value="" disabled>
-                {"Select Form"}
+                {"Select Template"}
               </option>
               {this.state.formOptions.map((option, idx) => {
                 return (

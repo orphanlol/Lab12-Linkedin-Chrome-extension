@@ -65,7 +65,7 @@ class UpdateIndivForm extends Component {
         <div className="FormWrapperEF">
           <div className="Header">
             <div className="CancelEF" onClick={this.cancel}>
-              {"< Back to forms"}
+              {"< Back to templates"}
             </div>
           </div>
           <form className="formBoxEF">

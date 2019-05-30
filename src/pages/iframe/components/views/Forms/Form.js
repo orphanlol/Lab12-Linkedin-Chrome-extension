@@ -58,7 +58,9 @@ class Form extends Component {
           <button
             className="Delete"
             onClick={e => {
-              if (window.confirm("Are you sure you want to delete this form?"))
+              if (
+                window.confirm("Are you sure you want to delete this template?")
+              )
                 this.deleteForm(
                   this.props.form.user_id,
                   this.props.form.form_id,

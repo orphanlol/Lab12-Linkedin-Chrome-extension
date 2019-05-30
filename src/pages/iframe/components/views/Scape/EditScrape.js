@@ -141,7 +141,7 @@ class EditScrape extends Component {
               Cancel{" "}
             </span> */}
               <Link className="editLink" to="/">
-                {"< Back to forms"}
+                {"< Back to templates"}
               </Link>
             </header>
             <h3>Resume: </h3>

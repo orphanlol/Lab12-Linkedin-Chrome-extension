@@ -6,7 +6,7 @@ import "./NavBar.css";
 const navBar = props => (
   <div className="Nav">
     <NavLink activeClassName="active" className="NavLink" exact={true} to="/">
-      Forms
+      Templates
     </NavLink>
 
     <NavLink
