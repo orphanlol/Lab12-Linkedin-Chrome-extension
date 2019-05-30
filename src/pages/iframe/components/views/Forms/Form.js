@@ -89,7 +89,7 @@ const mapDispatchToProps = dispatch => {
         formId: formId
       }),
     addFormToUpdate: form =>
-      store.dispatch({ type: "adias@ADD_FORM_TO_UPDATE", form: form })
+      store.dispatch({ type: "alias@ADD_FORM_TO_UPDATE", form: form })
   };
 };
 

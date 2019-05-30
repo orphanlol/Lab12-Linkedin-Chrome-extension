@@ -19,15 +19,15 @@ class App extends Component {
       "display-flex justify-flex-end align-items-center"
     );
     const bTest = document.getElementsByClassName(
-      'pv-top-card-v2-section__actions'
-    )
+      "pv-top-card-v2-section__actions"
+    );
 
-    let injects = null
+    let injects = null;
 
     if (aTest.length === 0) {
-      injects = bTest
+      injects = bTest;
     } else if (bTest.length === 0) {
-      injects = aTest
+      injects = aTest;
     }
 
     console.log(injects);
@@ -74,15 +74,15 @@ class App extends Component {
       "display-flex justify-flex-end align-items-center"
     );
     const bTest = document.getElementsByClassName(
-      'pv-top-card-v2-section__actions'
-    )
+      "pv-top-card-v2-section__actions"
+    );
 
-    let injects = null
+    let injects = null;
 
     if (aTest.length === 0) {
-      injects = bTest
+      injects = bTest;
     } else if (bTest.length === 0) {
-      injects = aTest
+      injects = aTest;
     }
     console.log(injects);
     const button = document.createElement("button");
@@ -157,7 +157,7 @@ class App extends Component {
     console.log("this.props", firstName);
 
     store.dispatch({
-      type: "adias@LOGIN",
+      type: "alias@LOGIN",
       firstName: firstName,
       lastName: lastName,
       id: id,
@@ -169,10 +169,8 @@ class App extends Component {
   getLinkiedElemet = () => {
     function scrollMiddle() {
       console.log("scroll middle");
-
+      console.log('scorll', document.body.scrollHeight)
       window.scrollTo(0, document.body.scrollHeight / 2);
-
-      window.scrollTo(0, 0);
     }
     window.setTimeout(scrollMiddle, 1000);
 
@@ -187,58 +185,56 @@ class App extends Component {
       const Aname = document.getElementsByClassName(
         "inline t-24 t-black t-normal  "
       )[0].innerText;
-      console.log('Aname',Aname)
+      console.log("Aname", Aname);
 
       const Bname = document.getElementsByClassName(
-        'pv-top-card-section__name'
-      )[0].innerText
-      console.log('Bname',Bname)
+        "pv-top-card-section__name"
+      )[0].innerText;
+      console.log("Bname", Bname);
 
-      let name = null
+      let name = null;
 
       if (Aname === undefined) {
-        name = Bname
+        name = Bname;
       } else {
-        name = Bname
+        name = Bname;
       }
       console.log(name, "backn");
 
-
-
       const AjobTitle = document.getElementsByClassName(
         "mt1 inline-block t-18 t-black t-normal "
-      )
+      );
 
-      console.log('Ajob',AjobTitle)
+      console.log("Ajob", AjobTitle);
 
       const BjobTitle = document.getElementsByClassName(
         "pv-top-card-section__headline"
-      )
-      console.log('bjob',BjobTitle)
+      );
+      console.log("bjob", BjobTitle);
 
-      let jobTitle = null
+      let jobTitle = null;
 
       if (AjobTitle.length === 0) {
-        jobTitle = BjobTitle[0].innerText
+        jobTitle = BjobTitle[0].innerText;
       } else {
-        jobTitle = AjobTitle[0].innerText
+        jobTitle = AjobTitle[0].innerText;
       }
       console.log(jobTitle, "backj");
 
       const Alocation = document.getElementsByClassName(
         "t-16 t-black t-normal inline-block"
-      )
+      );
 
       const Blocation = document.getElementsByClassName(
         "pv-top-card-section__location"
-      )
-      
-      let location = null
+      );
+
+      let location = null;
 
       if (Alocation.length === 0) {
-        location = Blocation[0].innerText
+        location = Blocation[0].innerText;
       } else {
-        location = Alocation[0].innerText
+        location = Alocation[0].innerText;
       }
 
       console.log(location, "location");
