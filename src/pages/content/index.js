@@ -169,10 +169,8 @@ class App extends Component {
   getLinkiedElemet = () => {
     function scrollMiddle() {
       console.log("scroll middle");
-
+      console.log('scorll', document.body.scrollHeight)
       window.scrollTo(0, document.body.scrollHeight / 2);
-
-      window.scrollTo(0, 0);
     }
     window.setTimeout(scrollMiddle, 1000);
 
