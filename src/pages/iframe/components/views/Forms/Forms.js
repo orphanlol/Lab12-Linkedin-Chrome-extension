@@ -6,6 +6,7 @@ import "./Forms.css";
 import NavBar from "../NavBar/NavBar";
 import Form from "./Form";
 import axios from "axios";
+import Spinner from "../../Spinner/Spinner";
 
 const store = new Store({
   portName: "COUNTING"
@@ -52,11 +53,16 @@ class Forms extends Component {
   };
 
   render() {
-    let form = <div>loading</div>;
+    let form = (
+      <div>
+        <Spinner />
+      </div>
+    );
 
     if (
-      this.props.forms.forms === null ||
-      this.props.forms.forms.length === (0 || undefined)
+      (this.props.forms.forms === null ||
+        this.props.forms.forms.length === (0 || undefined)) &&
+      !this.props.forms.isLoading
     ) {
       form = (
         <div className="ContainedForms">
@@ -67,7 +73,7 @@ class Forms extends Component {
           <button onClick={this.newForm}>Create New</button>
         </div>
       );
-    } else if (this.props.forms.forms !== null) {
+    } else if (this.props.forms.forms !== null && !this.props.forms.isLoading) {
       form = (
         <div>
           <NavBar />

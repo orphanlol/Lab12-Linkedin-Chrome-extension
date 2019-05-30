@@ -169,7 +169,7 @@ class App extends Component {
     console.log("this.props", firstName);
 
     store.dispatch({
-      type: "adias@LOGIN",
+      type: "alias@LOGIN",
       firstName: firstName,
       lastName: lastName,
       id: id,
@@ -228,8 +228,6 @@ class App extends Component {
       console.log("scroll middle");
 
       window.scrollTo(0, document.body.scrollHeight / 2);
-
-      window.scrollTo(0, 0);
     }
     window.setTimeout(scrollMiddle, 1000);
 
