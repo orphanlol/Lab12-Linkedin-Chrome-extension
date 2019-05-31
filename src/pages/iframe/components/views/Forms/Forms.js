@@ -21,7 +21,8 @@ class Forms extends Component {
   };
 
   componentWillMount() {
-    this.props.getForm(this.props.login.id);
+      this.props.getForm(this.props.login.id);
+  
     console.log("i am here");
   }
 
@@ -62,7 +63,9 @@ class Forms extends Component {
     if (
       (this.props.forms.forms === null ||
         this.props.forms.forms.length === (0 || undefined)) &&
-      !this.props.forms.isLoading
+      !this.props.forms.isLoading && this.props.forms.gettingForm === false &&
+      this.props.forms.isDeleting === false && this.props.forms.isAdding === false &&
+      this.props.forms.isAddingField === false && this.props.forms.isAdding === false
     ) {
       form = (
         <div className="ContainedForms">
@@ -73,7 +76,8 @@ class Forms extends Component {
           <button onClick={this.newForm}>Create New</button>
         </div>
       );
-    } else if (this.props.forms.forms !== null && !this.props.forms.isLoading) {
+    }
+    else if (this.props.forms.forms !== null && !this.props.forms.isLoading) {
       form = (
         <div>
           <NavBar />
@@ -92,7 +96,15 @@ class Forms extends Component {
           </div>
         </div>
       );
-    }
+    } else if (this.props.forms.gettingForm === false &&
+      this.props.forms.isDeleting === false && this.props.forms.isAdding === false &&
+      this.props.forms.isAddingField === false && this.props.forms.isAdding === false) {
+        form = (
+          <div>
+            <Spinner />
+          </div>
+        )
+      }
 
     return <div className="FormsContainer">{form}</div>;
   }

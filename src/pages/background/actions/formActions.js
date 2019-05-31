@@ -52,6 +52,9 @@ export const deleteForm = id => {
 export const ADD_FORM_START = "ADD_FORM_START";
 export const ADD_FORM_SUCCESS = "ADD_FORM_SUCCESS";
 export const ADD_FORM_FAILURE = "ADD_FORM_FAILURE";
+export const ADD_FIELD_START = 'ADD_FIELD_START'
+export const ADD_FIELD_SUCCESS = 'ADD_FIELD_SUCCESS'
+export const ADD_FIELD_FAILURE = 'ADD_FIELD_FAILURE'
 
 export const addForm = newForm => dispatch => {
   console.log(newForm, "begin new form");
@@ -74,6 +77,7 @@ export const addForm = newForm => dispatch => {
       dispatch({ type: ADD_FORM_SUCCESS });
       console.log(id, "i am here 1");
       for (let i = 0; i < newForm.newForm.fields.length; i++) {
+        dispatch({type: ADD_FIELD_START})
         axios
           .post(
             `https://linkedinextension.herokuapp.com/api/fields/field`,
@@ -89,9 +93,11 @@ export const addForm = newForm => dispatch => {
           )
           .then(res => {
             console.log(res, "field res");
+            dispatch({type: ADD_FIELD_SUCCESS})
           })
           .catch(err => {
             console.log("Failed to add form field", err);
+            dispatch({type: ADD_FIELD_FAILURE})
           });
       }
     })

@@ -74,6 +74,16 @@ class UpdateIndivForm extends Component {
     this.props.history.push("/forms");
   };
 
+  afterFormDelete = () => {
+    let url_string = window.location.href; //window.location.href
+    let url = new URL(url_string);
+    let id = url.searchParams.get("id");
+    if(this.props.forms.isDeleting === false) {
+      this.props.getIndivForm(id);
+      this.props.getField(id);
+    }
+  }
+
   render() {
     console.log(this.state.form);
     let update = (
@@ -86,7 +96,8 @@ class UpdateIndivForm extends Component {
       this.props.forms.gettingForm === true &&
       this.props.forms.gettingField === true &&
       this.state.form.length === 0 &&
-      this.state.fields.length === 0
+      this.state.fields.length === 0 &&
+      this.props.forms.isDelete === true
     ) {
       update = (
         <div>
@@ -97,7 +108,8 @@ class UpdateIndivForm extends Component {
       this.props.forms.gettingForm === false &&
       this.props.forms.gettingField === false &&
       this.state.form.length !== 0 &&
-      this.state.fields.length !== 0
+      this.state.fields.length !== 0 &&
+      this.props.forms.isDelete === false
     ) {
       update = (
         <div className="PageWrapperEF">
@@ -156,7 +168,16 @@ class UpdateIndivForm extends Component {
                   onChange={this.handleChangeField}
                 /> */}
                       <button
-                        onClick={e => this.deleteField(e)}
+                        onClick={e => {
+                          if (
+                            window.confirm("Are you sure you want to delete this field?")
+                          )
+
+                          this.deleteField(e)
+                          this.props.initialForm()
+                          this.props.initialField()
+                          this.afterFormDelete()
+                        }}
                         value={this.state.fields[idx].id}
                         className="DeleteFieldEF"
                       >

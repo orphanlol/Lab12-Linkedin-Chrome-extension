@@ -16,7 +16,10 @@ import {
   UPDATE_FORM_FAILURE,
   ADD_UPDATE_FORM_START,
   ADD_UPDATE_FORM_FAILURE,
-  ADD_UPDATE_FORM_SUCCESS
+  ADD_UPDATE_FORM_SUCCESS,
+  ADD_FIELD_START,
+  ADD_FIELD_SUCCESS,
+  ADD_FIELD_FAILURE
 } from "../actions/formActions";
 
 import {
@@ -24,16 +27,18 @@ import {
   GET_FIELDS_SUCCESS,
   GET_FIELDS_FAILURE,
   DELETE_FIELD_START,
-  DELETE_FIELDS_FAILURE,
-  DELETE_FIELDS_SUCCESS
+  DELETE_FIELD_FAILURE,
+  DELETE_FIELD_SUCCESS
 } from "../actions/formFieldActions";
 
 const initialState = {
   forms: [],
   isLoading: false,
   isAdding: false,
+  isAddingField: false,
   gettingForm: false,
   isDeleting: false,
+  isDelete: false,
   isUpdating: false,
   formToUpdate: [],
   isADDUpdateForm: false,
@@ -64,6 +69,21 @@ const formReducer = (state = initialState, action) => {
         forms: action.payload,
         error: action.ERROR
       };
+    case ADD_FIELD_START:
+      return {
+        ...state,
+        isAddingField: true
+      }
+    case ADD_FIELD_SUCCESS:
+      return {
+        ...state,
+        isAddingField: false
+      }
+    case ADD_FIELD_FAILURE:
+      return {
+        ...state,
+        isAddingField: false
+      }
     case DELETE_FORM_START:
       return {
         ...state,
@@ -109,7 +129,6 @@ const formReducer = (state = initialState, action) => {
       };
 
     case GET_INDIVFORM_SUCCESS:
-      console.log("action payload", action.payload);
       return {
         ...state,
         gettingForm: false,
@@ -167,19 +186,19 @@ const formReducer = (state = initialState, action) => {
     case DELETE_FIELD_START:
       return {
         ...state,
-        isDeleting: true,
+        isDelete: true,
         error: ""
       };
-    case DELETE_FIELDS_SUCCESS:
+    case DELETE_FIELD_SUCCESS:
       return {
         ...state,
-        isDeleting: false,
+        isDelete: false,
         error: ""
       };
-    case DELETE_FIELDS_FAILURE:
+    case DELETE_FIELD_FAILURE:
       return {
         ...state,
-        isDeleting: false,
+        isDelete: false,
         error: action.payload
       };
     case ADD_UPDATE_FORM_START:

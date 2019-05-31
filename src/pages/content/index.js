@@ -163,7 +163,7 @@ class App extends Component {
     const iframe = document.createElement("iframe");
     iframe.className = "iframe";
     iframe.src =
-      "chrome-extension://fajgjcfafoeojlbmhknnhonghielcgbp/pages/iframe.html";
+      "chrome-extension://ahmiihehkjgljakabbilhepgnolajkkj/pages/iframe.html";
     iframe.width = "452px";
     iframe.style.zIndex = "2147483647";
     iframe.style.top = "0px";

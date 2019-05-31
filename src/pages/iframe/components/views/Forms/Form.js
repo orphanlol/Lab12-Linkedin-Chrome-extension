@@ -21,6 +21,12 @@ class Form extends Component {
     await this.props.history.push(`/update-form/?id=${form.form_id}`);
   };
 
+  gettingForm = () => {
+    if (this.props.forms.isDeleting === false) {
+      this.props.getForm(this.props.login.id);
+    }
+  }
+
   render() {
     // return (
     // <FormWrapper>
@@ -65,7 +71,8 @@ class Form extends Component {
                   this.props.form.user_id,
                   this.props.form.form_id,
                   e.stopPropagation()
-                );
+                )
+                this.gettingForm()
             }}
           >
             delete
@@ -78,7 +85,9 @@ class Form extends Component {
 
 const mapStateToProps = state => {
   return {
-    formToUpdate: state.formReducer.formToUpdate
+    formToUpdate: state.formReducer.formToUpdate,
+    login: state.login,
+    forms: state.formReducer
   };
 };
 
@@ -92,7 +101,8 @@ const mapDispatchToProps = dispatch => {
       }),
     addFormToUpdate: form =>
       // store.dispatch({ type: "adias@ADD_FORM_TO_UPDATE", form: form })
-      store.dispatch({ type: "alias@ADD_FORM_TO_UPDATE", form: form })
+      store.dispatch({ type: "alias@ADD_FORM_TO_UPDATE", form: form }),
+    getForm: id => store.dispatch({ type: "alias@GET_FORM", id: id })
   };
 };
 

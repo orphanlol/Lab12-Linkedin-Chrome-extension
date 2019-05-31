@@ -14,6 +14,7 @@ class NewForm extends Component {
     name: "",
     fieldOptions: ["Job Title", "Name", "Location", "Skills", "Jobs", "Degrees"]
   };
+  
 
   handleChange = e => {
     if (e.target.name != "name") {
@@ -127,7 +128,10 @@ class NewForm extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    login: state.login,
+    forms: state.formReducer
+  };
 };
 
 const mapDispatchToProps = dispatch => {
