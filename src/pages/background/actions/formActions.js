@@ -120,7 +120,8 @@ export const getIndivForm = formId => dispatch => {
     )
     .then(form => {
       console.log(form, "form in action in");
-      dispatch({ type: GET_INDIVFORM_SUCCESS, payload:form.data});
+      // dispatch({ type: ADD_UPDATE_FORM_SUCCESS, payload: form.data });
+      dispatch({ type: GET_INDIVFORM_SUCCESS, payload: form.data });
     })
     .catch(err => {
       dispatch({ type: GET_INDIVFORM_FAILURE, payload: err });
@@ -185,5 +186,5 @@ export const addFormToUpdate = form => dispatch => {
 };
 
 export const initialForm = none => dispatch => {
-  dispatch({type: GET_INDIVFORM_START})
-}
+  dispatch({ type: GET_INDIVFORM_START });
+};

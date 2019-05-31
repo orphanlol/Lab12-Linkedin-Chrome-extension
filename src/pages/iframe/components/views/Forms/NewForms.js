@@ -12,7 +12,7 @@ class NewForm extends Component {
   state = {
     fields: [{ name: "" }],
     name: "",
-    fieldOptions: ["Job Title", "Name", "Location"]
+    fieldOptions: ["Job Title", "Name", "Location", "Skills", "Jobs", "Degrees"]
   };
 
   handleChange = e => {
@@ -58,12 +58,12 @@ class NewForm extends Component {
         <div className="FormWrapperNF">
           <div className="Header">
             <div className="CancelNF" onClick={this.cancel}>
-              {"< Back to forms"}
+              {"< Back to templates"}
             </div>
           </div>
           <form className="formBoxNF">
             <input
-              placeholder="Name your form..."
+              placeholder="Name your template..."
               type="text"
               name="name"
               value={name}

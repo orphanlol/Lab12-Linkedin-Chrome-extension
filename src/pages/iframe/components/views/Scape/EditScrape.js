@@ -66,6 +66,26 @@ class EditScrape extends Component {
           console.log(this.state.scrapedFields)
         );
       }
+      if (name == "Jobs") {
+        let scrapedFields = [...this.state.scrapedFields];
+
+        scrapedFields[idx].text = this.props.linkedinInfo.jobs;
+        scrapedFields[idx].field = name;
+
+        this.setState({ scrapedFields }, () =>
+          console.log(this.state.scrapedFields)
+        );
+      }
+      if (name == "Degrees") {
+        let scrapedFields = [...this.state.scrapedFields];
+
+        scrapedFields[idx].text = this.props.linkedinInfo.degrees;
+        scrapedFields[idx].field = name;
+
+        this.setState({ scrapedFields }, () =>
+          console.log(this.state.scrapedFields)
+        );
+      }
     });
   }
 
@@ -86,7 +106,7 @@ class EditScrape extends Component {
     doc.text("Resume:", 10, 10);
 
     for (let i = 0; i < this.state.scrapedFields.length; i++) {
-      let yaxis = 30 + 15 * i;
+      let yaxis = 30 + 30 * i;
       let line = doc.splitTextToSize(
         `${this.state.scrapedFields[i].field}: ${
           this.state.scrapedFields[i].text
@@ -113,43 +133,47 @@ class EditScrape extends Component {
       return <div> Loading</div>;
     } else {
       return (
-        <div>
-          <header>
-            {/* <span onClick={() => this.props.history.push("/scrape")}>
+        <div className="esContainer">
+          <div className="esInnerContainer">
+            <header>
+              {/* <span onClick={() => this.props.history.push("/scrape")}>
               {" "}
               Cancel{" "}
             </span> */}
-            <Link className="editLink" to="/">
-              Back to forms
-            </Link>
-          </header>
-          <h3>Resume: </h3>
-          <form>
-            {this.state.fields.map((val, idx) => {
-              let nameId = `name-${idx}`;
-              return (
-                <div key={idx}>
-                  <label htmlFor={nameId}>{`${
-                    this.state.fields[idx].name
-                  }`}</label>
-                  <div>
-                    <input
-                      type="text"
-                      name={nameId}
-                      data-id={idx}
-                      id={nameId}
-                      value={this.state.scrapedFields[idx].text}
-                      className="name"
-                      onChange={this.handleChangeField}
-                    />
+              <Link className="editLink" to="/">
+                {"< Back to templates"}
+              </Link>
+            </header>
+            <h3>Resume: </h3>
+            <form className="esForm">
+              {this.state.fields.map((val, idx) => {
+                let nameId = `name-${idx}`;
+                return (
+                  <div key={idx}>
+                    <label htmlFor={nameId}>{`${
+                      this.state.fields[idx].name
+                    }`}</label>
+                    <div className={"esInput"}>
+                      <input
+                        type="text"
+                        name={nameId}
+                        data-id={idx}
+                        id={nameId}
+                        value={this.state.scrapedFields[idx].text}
+                        className="name"
+                        onChange={this.handleChangeField}
+                      />
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-            <div>
-              <button onClick={e => this.print(e)}>Export</button>
-            </div>
-          </form>
+                );
+              })}
+              <div className="exportDiv">
+                <button className="exportBtn" onClick={e => this.print(e)}>
+                  Export
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       );
     }

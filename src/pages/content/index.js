@@ -31,9 +31,18 @@ class App extends Component {
     }
 
     console.log(injects);
+
+    let mouseOn = function() {
+      this.style.background = "#b38b42";
+    };
+
+    let mouseOff = function() {
+      this.style.background = "#cc9022";
+    };
+
     const button = document.createElement("button");
     button.className = "openIframe";
-    button.innerText = "Open The extension";
+    button.innerText = "Open Extension";
     button.style.transitionTimingFunction = "cubic-bezier(.4, 0, .2, 1)";
     button.style.transitionDuration = "167ms";
     button.style.alignItems = "center";
@@ -45,17 +54,22 @@ class App extends Component {
     button.style.fontWeight = "600";
     button.style.display = "inline-flex";
     button.style.justifyContent = "center";
-    button.style.maxWidth = "480px";
+    button.style.maxWidth = "160px";
     button.style.overflow = "hidden";
     button.style.outlineWidth = "2px";
     button.style.transitionProperty = "background-color, box-shadow, color";
     button.style.verticalAlign = "middle";
-    button.style.backgroundColor = "#0073b1";
+    button.style.backgroundColor = "#cc9022";
     button.style.color = "white";
     button.style.fontSize = "1.6rem";
-    button.style.minHeight = "40px";
+    button.style.minHeight = "32px";
     button.style.lineHeight = "20px";
     button.style.marginTop = "8px";
+    button.style.marginLeft = "8px";
+    button.style.marginBottom = "8px";
+    button.style.padding = "6px 12px";
+    button.onmouseenter = mouseOn;
+    button.onmouseleave = mouseOff;
 
     injects[0].appendChild(button);
 
@@ -64,7 +78,7 @@ class App extends Component {
       this.setState({
         iframeOpen: true
       });
-      console.log("fuck", injects);
+      console.log("inject open", injects);
       injects[0].removeChild(button);
     });
   };
@@ -85,9 +99,18 @@ class App extends Component {
       injects = aTest;
     }
     console.log(injects);
+
+    let mouseOn = function() {
+      this.style.background = "#b38b42";
+    };
+
+    let mouseOff = function() {
+      this.style.background = "#cc9022";
+    };
+
     const button = document.createElement("button");
     button.className = "openIframe";
-    button.innerText = "close The extension";
+    button.innerText = "Close Extension";
     button.style.transitionTimingFunction = "cubic-bezier(.4, 0, .2, 1)";
     button.style.transitionDuration = "167ms";
     button.style.alignItems = "center";
@@ -99,17 +122,22 @@ class App extends Component {
     button.style.fontWeight = "600";
     button.style.display = "inline-flex";
     button.style.justifyContent = "center";
-    button.style.maxWidth = "480px";
+    button.style.maxWidth = "160px";
     button.style.overflow = "hidden";
     button.style.outlineWidth = "2px";
     button.style.transitionProperty = "background-color, box-shadow, color";
     button.style.verticalAlign = "middle";
-    button.style.backgroundColor = "#0073b1";
+    button.style.backgroundColor = "#cc9022";
     button.style.color = "white";
     button.style.fontSize = "1.6rem";
-    button.style.minHeight = "40px";
+    button.style.minHeight = "32px";
     button.style.lineHeight = "20px";
     button.style.marginTop = "8px";
+    button.style.marginLeft = "8px";
+    button.style.marginBottom = "8px";
+    button.style.padding = "6px 12px";
+    button.onmouseenter = mouseOn;
+    button.onmouseleave = mouseOff;
 
     injects[0].appendChild(button);
 
@@ -135,16 +163,23 @@ class App extends Component {
     const iframe = document.createElement("iframe");
     iframe.className = "iframe";
     iframe.src =
-      "chrome-extension://ahmiihehkjgljakabbilhepgnolajkkj/pages/iframe.html";
+      "chrome-extension://fajgjcfafoeojlbmhknnhonghielcgbp/pages/iframe.html";
     iframe.width = "452px";
     iframe.style.zIndex = "2147483647";
     iframe.style.top = "0px";
+    iframe.style.marginTop = "1%";
     iframe.style.opacity = "1";
     iframe.style.position = "fixed";
-    iframe.style.height = "100%";
+    iframe.style.height = "95%";
     iframe.style.display = "block";
-    iframe.style.right = "-4px";
-    iframe.style.backgroundColor = "white";
+    iframe.style.right = "15px";
+    iframe.style.backgroundColor = "#faf7fc";
+    iframe.style.paddingTop = "5px";
+    iframe.style.paddingLeft = "12px";
+    iframe.style.borderRadius = "5px";
+    iframe.style.boxShadow = "8px 10px 5px 0px rgba(0,0,0,0.4)";
+    iframe.style.webkitBoxShadow = "8px 10px 5px 0px rgba(0,0,0,0.4)";
+
     inject.appendChild(iframe);
   };
 
@@ -169,12 +204,13 @@ class App extends Component {
   getLinkiedElemet = () => {
     function scrollMiddle() {
       console.log("scroll middle");
-      console.log('scorll', document.body.scrollHeight)
+
       window.scrollTo(0, document.body.scrollHeight / 2);
     }
     window.setTimeout(scrollMiddle, 1000);
 
     function scrollTop() {
+      console.log("scrolltop");
       window.scrollTo(0, 0);
     }
 
@@ -182,108 +218,67 @@ class App extends Component {
 
     function getFields() {
       console.log("get fields");
-      const Aname = document.getElementsByClassName(
+      const name = document.getElementsByClassName(
         "inline t-24 t-black t-normal  "
       )[0].innerText;
-      console.log("Aname", Aname);
-
-      const Bname = document.getElementsByClassName(
-        "pv-top-card-section__name"
-      )[0].innerText;
-      console.log("Bname", Bname);
-
-      let name = null;
-
-      if (Aname === undefined) {
-        name = Bname;
-      } else {
-        name = Bname;
-      }
       console.log(name, "backn");
-
-      const AjobTitle = document.getElementsByClassName(
+      const jobTitle = document.getElementsByClassName(
         "mt1 inline-block t-18 t-black t-normal "
-      );
-
-      console.log("Ajob", AjobTitle);
-
-      const BjobTitle = document.getElementsByClassName(
-        "pv-top-card-section__headline"
-      );
-      console.log("bjob", BjobTitle);
-
-      let jobTitle = null;
-
-      if (AjobTitle.length === 0) {
-        jobTitle = BjobTitle[0].innerText;
-      } else {
-        jobTitle = AjobTitle[0].innerText;
-      }
+      )[0].innerText;
       console.log(jobTitle, "backj");
 
-      const Alocation = document.getElementsByClassName(
+      const location = document.getElementsByClassName(
         "t-16 t-black t-normal inline-block"
+      )[0].innerText;
+      console.log(location, "backl");
+
+      let skills = document.getElementsByClassName(
+        "pv-skill-category-entity__name-text t-16 t-black t-bold"
       );
 
-      const Blocation = document.getElementsByClassName(
-        "pv-top-card-section__location"
-      );
-
-      let location = null;
-
-      if (Alocation.length === 0) {
-        location = Blocation[0].innerText;
-      } else {
-        location = Alocation[0].innerText;
+      console.log("rawskills", skills);
+      let parsedSkills = [];
+      for (let i = 0; i < skills.length; i++) {
+        console.log("infor", i, parsedSkills);
+        parsedSkills[i] = skills[i].innerText;
       }
+      const top3skills = parsedSkills.toString();
+      console.log(top3skills, "backskills");
 
-      console.log(location, "location");
+      let jobs = document
+        .getElementsByClassName(
+          "pv-profile-section experience-section ember-view"
+        )[0]
+        .getElementsByClassName("t-16 t-black t-bold");
+      console.log(jobs, "jobs");
 
-      // let skills = document.getElementsByClassName(
-      //   "pv-skill-category-entity__name-text t-16 t-black t-bold"
-      // );
+      let parsedJobs = [];
+      for (let i = 0; i < jobs.length; i++) {
+        console.log("injobsfor", i, parsedJobs);
+        parsedJobs[i] = jobs[i].innerText;
+      }
+      const topJobs = parsedJobs.toString();
+      console.log(topJobs, "topJobs");
 
-      // console.log("rawskills", skills);
-      // let parsedSkills = [];
-      // for (let i = 0; i < skills.length; i++) {
-      //   console.log("infor", i, parsedSkills);
-      //   parsedSkills[i] = skills[i].innerText;
-      // }
-      // const top3skills = parsedSkills.toString();
-      // console.log(top3skills, "backskills");
+      let education = document.getElementsByClassName("pv-entity__degree-info");
+      console.log(education, "education");
 
-      // let jobs = document
-      //   .getElementsByClassName(
-      //     "pv-profile-section experience-section ember-view"
-      //   )[0]
-      //   .getElementsByClassName("t-16 t-black t-bold");
-      // console.log(jobs, "jobs");
-
-      // let parsedJobs = [];
-      // for (let i = 0; i < jobs.length; i++) {
-      //   console.log("injobsfor", i, parsedJobs);
-      //   parsedJobs[i] = jobs[i].innerText;
-      // }
-      // const topJobs = parsedJobs.toString();
-      // console.log(topJobs, "topJobs");
-
-      // let education = document.getElementsByClassName("pv-entity__degree-info");
-      // console.log(education, "education");
-
-      // let parsedEducation = [];
-      // for (let i = 0; i < education.length; i++) {
-      //   console.log("inedufor", i, parsedEducation);
-      //   parsedEducation[i] = education[i].innerText;
-      // }
-      // const degrees = parsedEducation.toString();
-      // console.log(degrees, "degrees");
+      let parsedEducation = [];
+      for (let i = 0; i < education.length; i++) {
+        console.log("inedufor", i, parsedEducation);
+        parsedEducation[i] = education[i].innerText;
+      }
+      const degrees = parsedEducation.toString();
+      console.log(degrees, "degrees");
 
       store.dispatch({
         type: "LINK_INFO",
         name: name,
         jobTitle: jobTitle,
-        location: location
-        // skills: top3skills
+        location: location,
+        skills: top3skills,
+        jobs: topJobs,
+        degrees: degrees
       });
     }
 

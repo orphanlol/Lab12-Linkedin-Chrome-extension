@@ -35,7 +35,7 @@ export const deleteField = id => dispatch => {
   dispatch({ type: DELETE_FIELD_START });
   return axios
     .delete(
-      `https://linkedinextension.herokuapp.com/api/fields/field/${id.formId}`,
+      `https://linkedinextension.herokuapp.com/api/fields/field/${id.target}`,
       {
         headers: {
           Authorization: window.localStorage.token
@@ -52,5 +52,5 @@ export const deleteField = id => dispatch => {
 };
 
 export const initialField = none => dispatch => {
-  dispatch({type: GET_FIELDS_START})
-}
+  dispatch({ type: GET_FIELDS_START });
+};

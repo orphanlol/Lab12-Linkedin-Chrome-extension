@@ -1,0 +1,46 @@
+.popupBoxLogin {
+  margin: 5px;
+  padding: 10px;
+  width: 150px;
+  max-width: 90%;
+  background-color: white;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.popupBoxLogin:hover {
+  cursor: pointer;
+  box-shadow: 0 0 2px 2px #0284b1;
+  transition: all 0.3s;
+}
+
+.popupBoxLoggedIn {
+  margin: 5px;
+  padding: 10px;
+  width: 150px;
+  max-width: 90%;
+  background-color: white;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.popupBoxLoggedIn:hover {
+  cursor: pointer;
+  box-shadow: 0 0 2px 2px #0284b1;
+  transition: all 0.3s;
+}
+
+.popupA {
+  text-decoration: none;
+  color: #0284b1;
+}
+
+.popupA:visited {
+  color: #0284b1;
+}
+
+.popupA:hover {
+  text-decoration: underline;
+}
