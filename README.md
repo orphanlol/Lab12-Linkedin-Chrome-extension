@@ -22,13 +22,14 @@ npm build
 ## Usage
 
 ```sh
-current
-```
-
-## Run tests
-
-```sh
-npm run test
+Since this app is not in Chrome Web Store.
+But your are still allow to using it in the Chrome broser by following the step below:
+1. npm run build, You will get a folder.
+2. open chrome extension manager in setting
+3. turn on the developer mode
+4. click on load unzip extension
+5. select the folder that we got on step 1
+6. The extension should be working but now
 ```
 
 ## Author
