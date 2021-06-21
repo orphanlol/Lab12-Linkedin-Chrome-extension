@@ -288,7 +288,7 @@ class App extends Component {
   render() {
     let content = null;
 
-    if (window.location.hostname === "linkedinextension.netlify.com") {
+    if (window.location.hostname === "linkedin-extension.netlify.app") {
       content = (
         <div>
           {console.log("mamamiya")}

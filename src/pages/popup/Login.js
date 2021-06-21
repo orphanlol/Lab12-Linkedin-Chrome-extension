@@ -26,7 +26,7 @@ class Login extends Component {
         <div className="popupBoxLogin">
           <a
             className="popupA"
-            href="https://linkedinextension.netlify.com"
+            href="https://linkedin-extension.netlify.app"
             target="_blank"
           >
             Login
@@ -40,7 +40,7 @@ class Login extends Component {
           <div>
             <a
               className="popupA"
-              href="https://linkedinextension.netlify.com"
+              href="linkedin-extension.netlify.app"
               target="_blank"
             >
               Logout

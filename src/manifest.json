@@ -16,7 +16,7 @@
     {
       "matches": [
         "https://www.linkedin.com/in/*",
-        "https://linkedinextension.netlify.com/*"
+        "https://linkedin-extension.netlify.app/*"
       ],
       "js": ["pages/index.js"],
       "run_at": "document_end"
@@ -35,10 +35,9 @@
       "https://oauth.io/*",
       "https://www.linkedin.com/*",
       "https://www.google.com/*",
-      "chrome-extension://ahmiihehkjgljakabbilhepgnolajkkj/*"
+      "chrome-extension://dgbnjkefangihepcacajdolbmickggpf/*"
     ]
   },
   "minimum_chrome_version": "60",
   "web_accessible_resources": ["pages/*"],
-  "content_security_policy": "script-src 'self' https://cdn.rawgit.com/oauth-io/oauth-js/c5af4519/dist/oauth.js; object-src 'self'"
-}
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
