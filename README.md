@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> An Chrome Exttension prototype for an start-up stackholder using to sourcing candidats with one click, spend less time entering data, and free up more for true work of hiring.
+> An Chrome Extension prototype for an start-up stackholder using to sourcing candidats with one click, spend less time entering data, and free up more for true work of hiring.
 
 ### 🏠 [Homepage](https://linkedin-extension.netlify.app)
 
