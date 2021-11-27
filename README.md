@@ -9,7 +9,7 @@
   </a>
 </p>
 
-> An Chrome Extension prototype for an start-up stackholder using to sourcing candidats with one click, spend less time entering data, and free up more for true work of hiring.
+> An Chrome Extension prototype for an start-up stackholder using to sourcing candidates with one click, spend less time entering data, and free up more for true work of hiring.
 
 ### 🏠 [Homepage](https://linkedin-extension.netlify.app)
 
@@ -23,11 +23,11 @@ npm build
 
 ```sh
 Since this app is not in Chrome Web Store.
-But your are still allow to using it in the Chrome broser by following the step below:
+But you are still allowed to use it in the Chrome browser by following the steps below:
 1. npm run build, You will get a folder.
-2. open chrome extension manager in setting
-3. turn on the developer mode
-4. click on load unzip extension
+2. open chrome extension manager in settings
+3. turn on developer mode
+4. click on load unzipped extension
 5. select the folder that we got on step 1
 6. The extension should be working but now
 ```
