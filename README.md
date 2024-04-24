@@ -21,7 +21,6 @@ npm build
 
 ## Usage
 
-```sh
 Since this app is not in the [Chrome Web Store](https://chrome.google.com/webstore/category/extensions), it's a pain in the back.
 But you are still allowed to use it in the Chrome browser by following the steps below:
 1. Type "npm run build" (without quotes), then you will get a folder.
@@ -30,7 +29,6 @@ But you are still allowed to use it in the Chrome browser by following the steps
 4. Click on Load unpacked. (First, unzip the file, then, click pack extension, and then load the unzipped extension with load unpacked.)
 5. Select the folder that we got on step 1
 6. The extension should be working now
-```
 
 ## Author
 
