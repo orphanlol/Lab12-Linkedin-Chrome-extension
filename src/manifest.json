@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Linkedin Chorme Extension",
-  "short_name": "Help Recurter find the right canadate ",
+  "name": "Linkedin Chrome Extension",
+  "short_name": "Help job recruiter find the right candidate ",
   "version": "1.2.0",
-  "description": "This tool help recuter finding the best canadate for the company",
+  "description": "This tool helps job recruiters finding the best candidate(s) for their company",
   "browser_action": {
     "default_title": "Show the list of pinned tabs",
     "default_popup": "pages/popup.html"
